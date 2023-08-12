@@ -1,0 +1,43 @@
+import { db } from "@/lib/firebaseConfig";
+import { Timestamp, doc, getDoc } from "firebase/firestore";
+import { useEffect, useState } from "react";
+
+export interface chapterProps {
+  content: string;
+  publishedOn: Timestamp;
+  title: string;
+  id: string;
+}
+
+const useChapter = (novelId: string, volumeId: string, chpaterId: string) => {
+  const [chapter, setChapter] = useState<chapterProps | null>(null);
+  const ref = doc(
+    db,
+    "Novels",
+    novelId,
+    "Volumes",
+    volumeId,
+    "Chapters",
+    chpaterId
+  );
+
+  useEffect(() => {
+    async function getChapter() {
+      const doc = await getDoc(ref);
+
+      if (doc.exists()) {
+        setChapter({
+          id: doc.id,
+          content: doc.data().content,
+          publishedOn: doc.data().publishedOn,
+          title: doc.data().title,
+        });
+      }
+    }
+    getChapter();
+  }, [novelId, volumeId, chpaterId, ref]);
+
+  return chapter;
+};
+
+export default useChapter;
