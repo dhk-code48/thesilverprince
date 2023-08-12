@@ -54,7 +54,7 @@ const Chapter: FC<pageProps> = ({
         });
       }
     }
-    if (volumes.length > 0 && toc.length > 0) {
+    if (volumes !== null && toc[chapIndex]) {
       console.log("TOC", toc);
       const ref = doc(
         db,

@@ -11,6 +11,7 @@ interface props {
   volumes: VolumeProps[];
 }
 const Tab: FC<props> = ({ id, className, synopsis, volumes, ...props }) => {
+  let lastVal: number = 0;
   return (
     <Tabs
       defaultValue={"about"}
@@ -40,8 +41,11 @@ const Tab: FC<props> = ({ id, className, synopsis, volumes, ...props }) => {
           const lastChapterIndex =
             index === 0
               ? 0
-              : volumes[index - 1].tabeleOfContents.length -
+              : lastVal +
+                volumes[index - 1].tabeleOfContents.length -
                 volumes[0].tabeleOfContents.length;
+          lastVal =
+            index !== 0 ? volumes[index - 1].tabeleOfContents.length : 0;
           return (
             <Collapse
               novelId={id}

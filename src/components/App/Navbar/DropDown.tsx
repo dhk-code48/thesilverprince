@@ -31,8 +31,12 @@ import {
 import { FC } from "react";
 import ThemeToggle from "../ThemeToggle";
 import Link from "next/link";
+import { UseAuth } from "@/context/AuthContext";
+import Image from "next/image";
 
 const DropDown: FC = () => {
+  const { isLogIn, isLoading, user } = UseAuth();
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild className="my-auto">
@@ -48,10 +52,21 @@ const DropDown: FC = () => {
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
           <DropdownMenuItem>
-            <Link href="/sign-in" className="flex">
-              <LuUser className="mr-2 h-4 w-4" />
-              <span>Login</span>
-            </Link>
+            {isLogIn ? (
+              <Button isLoading={isLoading} variant={"ghost"} className="p-0">
+                <Image
+                  src={user.photoUrl}
+                  alt="user profile"
+                  className="rounded-full"
+                  width={30}
+                  height={30}
+                />
+              </Button>
+            ) : (
+              <Link href={"/sign-in"}>
+                <Button isLoading={isLoading}>Login</Button>
+              </Link>
+            )}
           </DropdownMenuItem>
 
           <DropdownMenuItem>

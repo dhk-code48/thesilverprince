@@ -10,9 +10,9 @@ export default function Home() {
   const news = useNews();
   return (
     <div className="px-5 overflow-hidden mb-24 pt-10 lg:text-center">
-      <h1 className="font-body font-black text-2xl text-center text-accent-foreground tracking-wide lg:text-5xl">
-        Freedom from reality <br />
-        Awakening your brain cells
+      <h1 className="font-display text-2xl text-center text-accent-foreground tracking-wide lg:text-5xl">
+        Freedom <br />
+        From Reality
       </h1>
       <div className="mt-10 text-center">
         <span className="font-semibold text-sm tracking-wide ">
