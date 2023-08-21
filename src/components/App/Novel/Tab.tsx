@@ -29,7 +29,7 @@ const Tab: FC<props> = ({ id, className, synopsis, volumes, ...props }) => {
           className="data-[state=active]:text-blue-500 border-l px-10 font-bold text-xl"
           value="tabelContents"
         >
-          Tabel Of Contents
+          Table Of Contents
         </TabsTrigger>
       </TabsList>
       <TabsContent value="about" className="pt-10 px-5">

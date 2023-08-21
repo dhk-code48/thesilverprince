@@ -19,12 +19,11 @@ export interface chapterProps {
 
 const useChapters = (novelId: string, volumeId: string): chapterProps[] => {
   const [chapters, setChapters] = useState<chapterProps[]>([]);
-
-  const ref = query(
-    collection(db, "Novels", novelId, "Volumes", volumeId, "Chapters"),
-    orderBy("publishedOn", "desc")
-  );
   useEffect(() => {
+    const ref = query(
+      collection(db, "Novels", novelId, "Volumes", volumeId, "Chapters"),
+      orderBy("publishedOn", "desc")
+    );
     async function getVolume() {
       const docs = await getDocs(ref);
       const volumeData: chapterProps[] = [];
@@ -50,7 +49,7 @@ const useChapters = (novelId: string, volumeId: string): chapterProps[] => {
       setChapters(volumeData);
     }
     getVolume();
-  }, [volumeId, novelId, ref]);
+  }, [volumeId, novelId]);
 
   return chapters;
 };

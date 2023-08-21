@@ -36,7 +36,7 @@ export default function RootLayout({
           />
           <meta property="og:url" content="https://silver-prince.com/novel" />
           <meta property="og:type" content="website" />
-          <link rel="icon" href="/favicon.ico" sizes="any" />
+          {/* <link rel="icon" href="./favicon.ico" sizes="any" /> */}
         </Head>
         <Head>
           <meta name="twitter:card" content="summary_large_image" />
@@ -66,6 +66,7 @@ export default function RootLayout({
           gtag('config', 'G-N95QH7B521');
         `}
         </Script>
+        <Head>{/* <link rel="icon" href="/favicon.ico" sizes="any" /> */}</Head>
         <AuthProvider>
           <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
             <Navbar />

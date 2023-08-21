@@ -1,12 +1,6 @@
 "use client";
-import Breadcrumbs from "@/components/App/Novel/Breadcrumbs";
-import Rating from "@/components/App/Novel/Rating";
-import Tab from "@/components/App/Novel/Tab";
-import { Button } from "@/components/ui/button";
 import useNovel from "@/firebase/Read/getNovelData";
 import useVolumes from "@/firebase/Read/getVolumes";
-import Image from "next/image";
-import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import React, { FC, useEffect, useState } from "react";
 import { AiOutlineLoading } from "react-icons/ai";

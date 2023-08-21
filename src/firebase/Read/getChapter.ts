@@ -11,17 +11,17 @@ export interface chapterProps {
 
 const useChapter = (novelId: string, volumeId: string, chpaterId: string) => {
   const [chapter, setChapter] = useState<chapterProps | null>(null);
-  const ref = doc(
-    db,
-    "Novels",
-    novelId,
-    "Volumes",
-    volumeId,
-    "Chapters",
-    chpaterId
-  );
 
   useEffect(() => {
+    const ref = doc(
+      db,
+      "Novels",
+      novelId,
+      "Volumes",
+      volumeId,
+      "Chapters",
+      chpaterId
+    );
     async function getChapter() {
       const doc = await getDoc(ref);
 
@@ -35,7 +35,7 @@ const useChapter = (novelId: string, volumeId: string, chpaterId: string) => {
       }
     }
     getChapter();
-  }, [novelId, volumeId, chpaterId, ref]);
+  }, [novelId, volumeId, chpaterId]);
 
   return chapter;
 };

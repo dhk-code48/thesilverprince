@@ -22,12 +22,12 @@ export interface VolumeProps {
 
 const useVolumes = (novelId: string): VolumeProps[] => {
   const [volumes, setVolumes] = useState<VolumeProps[]>([]);
-  const ref = query(
-    collection(db, "Novels", novelId, "Volumes"),
-    orderBy("timestamp", "asc")
-  );
 
   useEffect(() => {
+    const ref = query(
+      collection(db, "Novels", novelId, "Volumes"),
+      orderBy("timestamp", "asc")
+    );
     async function getVolume() {
       const docs = await getDocs(ref);
       const volumeData: VolumeProps[] = [];
@@ -43,7 +43,7 @@ const useVolumes = (novelId: string): VolumeProps[] => {
       setVolumes(volumeData);
     }
     getVolume();
-  }, [novelId, ref]);
+  }, [novelId]);
 
   return volumes;
 };

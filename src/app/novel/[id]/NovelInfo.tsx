@@ -1,7 +1,7 @@
 import Breadcrumbs from "@/components/App/Novel/Breadcrumbs";
 import Rating from "@/components/App/Novel/Rating";
 import Tab from "@/components/App/Novel/Tab";
-import { Button, buttonVariants } from "@/components/ui/button";
+import { buttonVariants } from "@/components/ui/button";
 import { novelProps } from "@/firebase/Read/getNovelData";
 import { VolumeProps } from "@/firebase/Read/getVolumes";
 import Image from "next/image";
