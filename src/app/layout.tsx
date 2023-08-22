@@ -30,13 +30,10 @@ export default function RootLayout({
             property="og:description"
             content="Your Open Graph Description"
           />
-          <meta
-            property="og:image"
-            content="https://images2.imgbox.com/78/e5/38mF8Su4_o.png"
-          />
+          <meta property="og:image" content="/banner.jpg" />
           <meta property="og:url" content="https://silver-prince.com/novel" />
           <meta property="og:type" content="website" />
-          {/* <link rel="icon" href="./favicon.ico" sizes="any" /> */}
+          <link rel="icon" href="./favicon.ico" sizes="any" />
         </Head>
         <Head>
           <meta name="twitter:card" content="summary_large_image" />
@@ -48,10 +45,7 @@ export default function RootLayout({
             famous for his novel ‘Pokemon- a real story’ which has been
             published in webnovels, Fanfiction.net and AO3."
           />
-          <meta
-            name="twitter:image"
-            content="https://images2.imgbox.com/78/e5/38mF8Su4_o.png"
-          />
+          <meta name="twitter:image" content="/banner.jpg" />
         </Head>
         <Script
           strategy="afterInteractive"

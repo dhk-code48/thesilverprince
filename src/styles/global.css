@@ -84,8 +84,8 @@
 }
 .chapter * {
   user-select: none;
-  margin-top: 20px;
-  text-indent: 50px;
+  margin-top: 10px;
+  text-indent: 30px;
 }
 
 /* Media query for mobile phones */

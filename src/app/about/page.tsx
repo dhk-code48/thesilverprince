@@ -7,7 +7,7 @@ const About: FC = () => {
   return (
     <div className="pt-10 lg:pt-0">
       <Head>
-        <title>About | TheSilverPrince | Rahul Manandhar</title>
+        <title>About | The Silver Prince | Rahul Manandhar</title>
         <meta
           name="description"
           content="Rahul Manandhar (Pen name: The Silver Prince) was born in Nepal. He

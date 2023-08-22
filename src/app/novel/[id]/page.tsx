@@ -6,6 +6,7 @@ import React, { FC, useEffect, useState } from "react";
 import { AiOutlineLoading } from "react-icons/ai";
 import NovelInfo from "./NovelInfo";
 import Chapter from "./Chapter";
+import Head from "next/head";
 
 interface pageProps {
   params: { id: string };
@@ -24,21 +25,31 @@ const Novel: FC<pageProps> = ({ params }) => {
   const novel = useNovel(params.id);
   const volumes = useVolumes(params.id);
 
-  useEffect(() => {
-    if (novel) {
-      const { title, synopsis } = novel;
-      document.title = title + "| TheSilverPrince";
-      const metaDescription = document.querySelector(
-        'meta[name="description"]'
-      );
-      if (metaDescription) {
-        metaDescription.setAttribute("content", synopsis);
-      }
-    }
-  }, [novel]);
+  // useEffect(() => {
+  //   if (novel) {
+  //     const { title, synopsis } = novel;
+  //     document.title = title + "| TheSilverPrince";
+  //     const metaDescription = document.querySelector(
+  //       'meta[name="description"]'
+  //     );
+  //     if (metaDescription) {
+  //       metaDescription.setAttribute("content", synopsis);
+  //     }
+  //   }
+  // }, [novel]);
 
   return (
-    <div className="pt-10 lg:w-[70%] mx-auto">
+    <div className="py-10 lg:w-[70%] mx-auto">
+      <Head>
+        <title>
+          Read Pokemon Pokemon - A Real Story | TheSilverPrince | Pokemon,
+          System, Reincarnation, Adventure, Action, War, Conqueror,
+        </title>
+        <meta
+          name="description"
+          content="There is a substantial gap between the storyline of anime and the realistic narrative of Pokémon. This light novel aims to bridge that gap, providing viewers with a believable and thrilling adventure-packed story. Follow our protagonist, Axel Blaze, a reincarnated individual, who, armed with knowledge from the previous Pokémon world, aspires to achieve world domination. However, he comes to realize how utterly mistaken he was. This novel incorporates a system for added enjoyment, although the story does not revolve around it. 'Success is like being pregnant, everyone says congratulations but nobody knows how many times you were fucked.' Thus, this novel chronicles Axel Blaze's journey, shedding light on the concealed challenges he must confront to reach his dream."
+        />
+      </Head>
       {novel !== null && volumes !== null ? (
         <>
           {router.get("chapter") === null ? (

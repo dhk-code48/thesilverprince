@@ -22,6 +22,7 @@ interface sideProps {
   chapIndex: number;
   volumes: VolumeProps[];
   novelId: string;
+  handleChapArr: (c: number, v: number) => void;
 }
 
 const SideBar: FC<sideProps> = ({
@@ -30,6 +31,7 @@ const SideBar: FC<sideProps> = ({
   novelId,
   volumes,
   chapIndex,
+  handleChapArr,
 }) => {
   const [drawerState, setDrawerState] = useState(false);
   const [selectedVol, setSelectedVol] = useState<number>(volIndex);
@@ -102,22 +104,14 @@ const SideBar: FC<sideProps> = ({
           </Select>
           <div>
             {volumes[selectedVol].tabeleOfContents.map((chapter, index) => (
-              <Link
-                href={
-                  "/novel/" +
-                  novelId +
-                  "/?chapter=[" +
-                  selectedVol +
-                  "," +
-                  index +
-                  "]"
-                }
+              <p
+                onClick={() => handleChapArr(selectedVol, index)}
                 className="p-5 block hover:bg-gray-300 dark:hover:bg-slate-800 border border-gray-300 dark:border-gray-700 my-5 rounded-lg"
                 key={index}
                 id={`chap-${index}`}
               >
                 {chapter.title}
-              </Link>
+              </p>
             ))}
           </div>
         </div>

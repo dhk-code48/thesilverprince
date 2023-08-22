@@ -41,6 +41,11 @@ const Chapter: FC<pageProps> = ({
     setVolIndex(volumeIndex);
   }, [chapterIndex, volumeIndex]);
 
+  function handleChapArr(v: number, c: number) {
+    setVolIndex(v);
+    setChapIndex(c);
+  }
+
   useEffect(() => {
     async function getChapter(ref: DocumentReference) {
       const doc = await getDoc(ref);
@@ -98,6 +103,7 @@ const Chapter: FC<pageProps> = ({
       {chapter !== null ? (
         <>
           <SideBar
+            handleChapArr={handleChapArr}
             novelId={novelId}
             volumes={volumes}
             tableOfContents={volumes[volIndex].tabeleOfContents}

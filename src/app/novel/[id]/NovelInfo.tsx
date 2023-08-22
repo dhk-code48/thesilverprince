@@ -53,6 +53,7 @@ const NovelInfo: FC<novelInfoProps> = ({ novel, volumes, id }) => {
         </div>
       </div>
       <Tab
+        novelId={novel.id}
         id={id}
         volumes={volumes}
         className="mt-20 px-0 w-full"
