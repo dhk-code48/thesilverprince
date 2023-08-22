@@ -9,24 +9,28 @@ interface bcProps {
 }
 const Breadcrumbs: FC<bcProps> = ({ id, title, chapter }) => {
   return (
-    <div className="flex flex-wrap items-center gap-2 text-muted-foreground p-5 lg:px-0">
-      <Link className="" href="/">
+    <div className="flex flex-wrap items-center gap-1 md:gap-2 text-muted-foreground p-3 md:p-5 lg:px-0">
+      <Link className="text-sm lg:text-base" href="/">
         <LuHome />
       </Link>{" "}
       /
-      <Link className="" href="/novel">
+      <Link className="text-sm lg:text-base" href="/novel">
         Novels
       </Link>
       /
       <Link
         href={"/novel/" + id}
-        className={chapter ? "text-muted-foreground " : "text-foreground "}
+        className={
+          chapter
+            ? "text-sm lg:text-base text-muted-foreground "
+            : "text-foreground "
+        }
       >
         {title}
       </Link>{" "}
       {chapter && (
         <>
-          <p className="text-foreground ">/ {chapter}</p>{" "}
+          <p className="text-sm lg:text-base text-foreground ">/ {chapter}</p>{" "}
         </>
       )}
     </div>
