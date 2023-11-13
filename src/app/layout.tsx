@@ -60,7 +60,12 @@ export default function RootLayout({
           gtag('config', 'G-N95QH7B521');
         `}
         </Script>
-        <Head>{/* <link rel="icon" href="/favicon.ico" sizes="any" /> */}</Head>
+        <Script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2423639586019217"
+          crossOrigin="anonymous"
+        ></Script>
+        {/* <Head><link rel="icon" href="/favicon.ico" sizes="any" /></Head> */}
         <AuthProvider>
           <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
             <Navbar />
