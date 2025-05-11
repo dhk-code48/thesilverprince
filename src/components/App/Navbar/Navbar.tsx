@@ -1,8 +1,9 @@
 "use client";
 import React, { FC } from "react";
-import { LuHome, LuBookMinus, LuMegaphone, LuInfo } from "react-icons/lu";
-import { CgPatreon } from "react-icons/cg";
+import { LuBookMinus, LuMegaphone, LuInfo } from "react-icons/lu";
+import { CgHome, CgPatreon } from "react-icons/cg";
 import Link from "next/link";
+import { FiHome } from "react-icons/fi";
 import Image from "next/image";
 import NavLink from "./NavLink";
 import ThemeToggle from "../ThemeToggle";
@@ -14,7 +15,7 @@ const Navbar: FC = () => {
   const { isLogIn, isLoading, user } = UseAuth();
   return (
     <>
-      <div className="flex lg:hidden justify-between w-full px-5">
+      <div className="lg:hidden flex justify-between px-5 w-full">
         <Image src="/logo.png" width={70} height={70} alt="website logo" />
 
         <div className="flex items-center gap-4">
@@ -43,8 +44,8 @@ const Navbar: FC = () => {
           )}
         </div>
       </div>
-      <div className="fixed overflow-hidden h-20 bottom-0 lg:top-0 bg-background w-screen z-10">
-        <div className="w-full lg:w-[70%] h-full items-center lg:justify-between mx-auto flex justify-center">
+      <div className="lg:top-0 bottom-0 z-10 fixed bg-background w-screen h-20 overflow-hidden">
+        <div className="flex justify-center lg:justify-between items-center mx-auto w-full lg:w-[70%] h-full">
           <div className="lg:flex lg:gap-12">
             <Link href={"/"} className="hidden lg:inline-block">
               <Image
@@ -55,7 +56,7 @@ const Navbar: FC = () => {
               />
             </Link>
             <div className="flex gap-10">
-              <NavLink to="/" icon={<LuHome size={24} />} label="Home" />
+              <NavLink to="/" icon={<FiHome size={24} />} label="Home" />
               <NavLink
                 to="/novel"
                 icon={<LuBookMinus size={24} />}
@@ -74,7 +75,7 @@ const Navbar: FC = () => {
               />
             </div>
           </div>
-          <div className="lg:flex hidden items-center gap-4">
+          <div className="hidden lg:flex items-center gap-4">
             <ThemeToggle />
             <Link
               href={"https://www.patreon.com/TheSilverPrince1"}
@@ -84,7 +85,7 @@ const Navbar: FC = () => {
               <CgPatreon size={20} />
             </Link>
             {isLogIn ? (
-              <Link href={"/user"}>
+              <Link href={"/"}>
                 <Button isLoading={isLoading} variant={"ghost"} className="p-0">
                   <Image
                     src={user.photoUrl}

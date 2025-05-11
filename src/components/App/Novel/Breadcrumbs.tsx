@@ -1,6 +1,6 @@
 import Link from "next/link";
 import React, { FC } from "react";
-import { LuHome } from "react-icons/lu";
+import { FiHome } from "react-icons/fi";
 
 interface bcProps {
   id: string;
@@ -9,9 +9,9 @@ interface bcProps {
 }
 const Breadcrumbs: FC<bcProps> = ({ id, title, chapter }) => {
   return (
-    <div className="flex flex-wrap items-center gap-1 md:gap-2 text-muted-foreground p-3 md:p-5 lg:px-0">
+    <div className="flex flex-wrap items-center gap-1 md:gap-2 p-3 md:p-5 lg:px-0 text-muted-foreground">
       <Link className="text-sm lg:text-base" href="/">
-        <LuHome />
+        <FiHome />
       </Link>{" "}
       /
       <Link className="text-sm lg:text-base" href="/novel">
@@ -30,7 +30,7 @@ const Breadcrumbs: FC<bcProps> = ({ id, title, chapter }) => {
       </Link>{" "}
       {chapter && (
         <>
-          <p className="text-sm lg:text-base text-foreground ">/ {chapter}</p>{" "}
+          <p className="text-foreground text-sm lg:text-base">/ {chapter}</p>{" "}
         </>
       )}
     </div>

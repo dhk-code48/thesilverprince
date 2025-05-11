@@ -3,7 +3,7 @@ import Link from "next/link";
 import React, { FC } from "react";
 
 interface label {
-  label: "admin" | "novel" | "news";
+  label: "admin" | "novel" | "news" | "slides";
 }
 
 const MainNav: FC<label> = ({ label }) => {
@@ -35,6 +35,15 @@ const MainNav: FC<label> = ({ label }) => {
         )}
       >
         News
+      </Link>{" "}
+      <Link
+        href="/admin/slides"
+        className={cn(
+          "text-sm font-medium transition-colors hover:text-primary",
+          label !== "slides" && "text-muted-foreground"
+        )}
+      >
+        Slides
       </Link>
     </nav>
   );

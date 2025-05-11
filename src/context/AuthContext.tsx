@@ -118,7 +118,7 @@ export const AuthProvider: FC<authProps> = ({ children }) => {
 
   return (
     // Providing context value to children
-    <AuthContext.Provider
+    (<AuthContext.Provider
       value={{
         isAdmin: isAdmin,
         isLoading: isLoading,
@@ -130,7 +130,7 @@ export const AuthProvider: FC<authProps> = ({ children }) => {
       }}
     >
       {children}
-    </AuthContext.Provider>
+    </AuthContext.Provider>)
   );
 };
 

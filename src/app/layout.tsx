@@ -3,15 +3,21 @@ import "../styles/global.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { ThemeProvider } from "@/lib/theme-provider";
-import { Toaster } from "@/components/ui/toaster";
 import { AuthProvider } from "@/context/AuthContext";
 import Head from "next/head";
 import Script from "next/script";
+import Footer from "@/components/shared/Footer";
+import { ModalProvider } from "@/components/shared/modal/modal-provider";
+import { ModalContainer } from "@/components/shared/modal/modal-container";
+import { Toaster } from "@/components/ui/sonner";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import Providers from "./providers";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "TheSilverPrince",
+
   description:
     "Rahul Manandhar (Pen name: The Silver Prince) was born in Nepal. He is a light novel writer and has been writing since 2019. He is famous for his novel ‘Pokemon- a real story’ which has been published in webnovels, Fanfiction.net and AO3.",
 };
@@ -22,13 +28,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body className={inter.className + " bg-slate-100 dark:bg-background"}>
         <Head>
-          <meta property="og:title" content="Your Open Graph Title" />
+          <meta property="og:title" content="TheSilverPrince" />
           <meta
             property="og:description"
-            content="Your Open Graph Description"
+            content="Rahul Manandhar (Pen name: The Silver Prince) was born in Nepal. He is a light novel writer and has been writing since 2019. He is famous for his novel ‘Pokemon- a real story’ which has been published in webnovels, Fanfiction.net and AO3."
           />
           <meta property="og:image" content="/banner.jpg" />
           <meta property="og:url" content="https://silver-prince.com/novel" />
@@ -66,15 +72,7 @@ export default function RootLayout({
           crossOrigin="anonymous"
         ></Script>
         {/* <Head><link rel="icon" href="/favicon.ico" sizes="any" /></Head> */}
-        <AuthProvider>
-          <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
-            <Navbar />
-            <main className="lg:pt-20 min-h-screen pb-32 lg:pb-0">
-              {children}
-            </main>
-            <Toaster />
-          </ThemeProvider>
-        </AuthProvider>
+        <Providers>{children}</Providers>
       </body>
     </html>
   );

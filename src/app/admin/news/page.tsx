@@ -14,11 +14,9 @@ const News: FC = () => {
 
   return (
     <div>
-      <MenuBar label="news" />
-
       <div className="p-10">
         <div className="flex justify-between items-center">
-          <h2 className="text-3xl font-bold tracking-tight">News</h2>
+          <h2 className="font-bold text-3xl tracking-tight">News</h2>
           <Link
             className={buttonVariants({
               className: "gap-2",

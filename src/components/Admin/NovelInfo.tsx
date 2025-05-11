@@ -122,16 +122,16 @@ const AdminNovelInfo: FC<pageProps> = ({
   // }
 
   return (
-    <div className="pt-10 lg:w-[70%] mx-auto">
+    <div className="mx-auto pt-10 lg:w-[70%]">
       <div className="flex justify-end">
-        <Button onClick={handleNovelDeletion} className="bg-red-500 gap-2">
+        <Button onClick={handleNovelDeletion} className="gap-2 bg-red-500">
           Delete Novel <LuTrash2 size={18} />
         </Button>
       </div>
-      <form onSubmit={onSubmit} className="flex justify-stretch mt-10 gap-10">
+      <form onSubmit={onSubmit} className="flex justify-stretch gap-10 mt-10">
         <div>
           <Image
-            src={bannerSrc || ""}
+            src={bannerSrc || "/banner.jpg"}
             width={300}
             height={400}
             className="rounded-xl"
@@ -147,14 +147,14 @@ const AdminNovelInfo: FC<pageProps> = ({
             placeholder="Source Image for Banner"
           />
         </div>
-        <div className="flex justify-between flex-col">
+        <div className="flex flex-col justify-between">
           <div>
             <Input {...register("title")} className="font-bold text-3xl" />
             <Input
               {...register("tags")}
-              className="text-muted-foreground mt-1"
+              className="mt-1 text-muted-foreground"
             />
-            <div className="mt-8 flex gap-5 items-center w-auto">
+            <div className="flex items-center gap-5 mt-8 w-auto">
               <Rating rating={rating || 0} />
               <Input
                 type="text"
@@ -165,7 +165,7 @@ const AdminNovelInfo: FC<pageProps> = ({
                 })}
                 className="w-12"
               />{" "}
-              <p className="text-lg cursor-pointer flex">
+              <p className="flex text-lg cursor-pointer">
                 <Input
                   {...register("webLink")}
                   className="text-blue-500"
@@ -174,15 +174,15 @@ const AdminNovelInfo: FC<pageProps> = ({
               </p>
             </div>
           </div>
-          <h1 className="text-xl font-bold pb-2">Synopsis</h1>
+          <h1 className="pb-2 font-bold text-xl">Synopsis</h1>
           <Textarea
             placeholder="Synopsis Goes Here...."
             {...register("synopsis")}
           />
-          <div className="pb-10 gap-4 flex">
+          <div className="flex gap-4 pb-10">
             <Button
               type="submit"
-              className="bg-green-700 text-white hover:bg-green-800"
+              className="bg-green-700 hover:bg-green-800 text-white"
             >
               Save Changes
             </Button>

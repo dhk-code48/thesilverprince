@@ -1,17 +1,4 @@
-import {
-  LuCloud,
-  LuGithub,
-  LuLifeBuoy,
-  LuLogOut,
-  LuMail,
-  LuMessageSquare,
-  LuMoreVertical,
-  LuPlus,
-  LuPlusCircle,
-  LuUser,
-  LuUserPlus,
-  LuUsers,
-} from "react-icons/lu";
+import { FaEllipsisVertical } from "react-icons/fa6";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -20,12 +7,7 @@ import {
   DropdownMenuGroup,
   DropdownMenuItem,
   DropdownMenuLabel,
-  DropdownMenuPortal,
   DropdownMenuSeparator,
-  DropdownMenuShortcut,
-  DropdownMenuSub,
-  DropdownMenuSubContent,
-  DropdownMenuSubTrigger,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { FC } from "react";
@@ -41,7 +23,7 @@ const DropDown: FC = () => {
     <DropdownMenu>
       <DropdownMenuTrigger asChild className="my-auto">
         <Button variant="outline" className="p-0 border-0 h-auto">
-          <LuMoreVertical
+          <FaEllipsisVertical
             size={24}
             className="text-slate-700 dark:text-slate-400"
           />

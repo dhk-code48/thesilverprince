@@ -13,37 +13,34 @@ const AdminNovels: FC = () => {
   const novels = useNovels();
 
   return (
-    <div>
-      <MenuBar label="novel" />
-      <div className="p-10">
-        <div className="flex justify-between items-center">
-          <h2 className="text-3xl font-bold tracking-tight">Novels</h2>
-          <Link
-            className={buttonVariants({
-              className: "gap-2",
-            })}
-            href={"/admin/novel/add"}
-          >
-            Add Novel <LuPlus size={18} />
-          </Link>
-        </div>
-        <div className="flex flex-wrap gap-10 mt-5">
-          {novels !== null ? (
-            novels.map((novel, index) => {
-              return (
-                <NovelCard
-                  key={index + novel.id}
-                  to={"/admin/novel/" + novel.id}
-                  src={novel.banner}
-                  tags={novel.tags}
-                  title={novel.title}
-                />
-              );
-            })
-          ) : (
-            <BasicSkeleton />
-          )}
-        </div>
+    <div className="p-10">
+      <div className="flex justify-between items-center">
+        <h2 className="font-bold text-3xl tracking-tight">Novels</h2>
+        <Link
+          className={buttonVariants({
+            className: "gap-2",
+          })}
+          href={"/admin/novel/add"}
+        >
+          Add Novel <LuPlus size={18} />
+        </Link>
+      </div>
+      <div className="flex flex-wrap gap-10 mt-5">
+        {novels !== null ? (
+          novels.map((novel, index) => {
+            return (
+              <NovelCard
+                key={index + novel.id}
+                to={"/admin/novel/" + novel.id}
+                src={novel.banner}
+                tags={novel.tags}
+                title={novel.title}
+              />
+            );
+          })
+        ) : (
+          <BasicSkeleton />
+        )}
       </div>
     </div>
   );

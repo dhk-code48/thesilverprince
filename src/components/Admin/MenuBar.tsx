@@ -26,28 +26,22 @@ const MenuBar: FC<label> = ({ label }) => {
 
   return (
     <>
-      {isLoading ? (
-        <div className="z-50 w-full h-full flex justify-center items-center bg-background">
-          <AiOutlineLoading size={40} className="animate-spin" />
+      <div className="top-0 z-10 fixed flex items-center bg-background px-10 border-b w-full h-20">
+        <Button variant="outline" className="px-4 py-2 whitespace-nowrap">
+          <Image
+            src={user.photoUrl || "/logo.png"}
+            width={25}
+            height={25}
+            className="mr-2 rounded-full"
+            alt="user profile"
+          />
+          {user.displayName}
+        </Button>
+        <MainNav label={label} />
+        <div className="flex items-center space-x-4 ml-auto">
+          <ThemeToggle />
         </div>
-      ) : (
-        <div className="border-b flex px-10 items-center h-20 fixed top-0 bg-background z-10 w-full">
-          <Button variant="outline" className="whitespace-nowrap px-4 py-2">
-            <Image
-              src={user.photoUrl}
-              width={25}
-              height={25}
-              className="rounded-full mr-2"
-              alt="user profile"
-            />
-            {user.displayName}
-          </Button>
-          <MainNav label={label} />
-          <div className="ml-auto flex items-center space-x-4">
-            <ThemeToggle />
-          </div>
-        </div>
-      )}
+      </div>
     </>
   );
 };

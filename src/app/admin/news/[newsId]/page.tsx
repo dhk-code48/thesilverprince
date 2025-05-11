@@ -11,7 +11,7 @@ import "suneditor/dist/css/suneditor.min.css";
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import React, { FC, useEffect, useState } from "react";
+import React, { FC, useEffect, useState, use } from "react";
 import { useForm } from "react-hook-form";
 import SunEditor from "suneditor-react";
 import useNewsData from "@/firebase/Read/getNewsData";
@@ -20,12 +20,13 @@ import editNews from "@/firebase/Update/editNews";
 import deleteNews from "@/firebase/Delete/deleteNews";
 
 interface pageProps {
-  params: {
+  params: Promise<{
     newsId: string;
-  };
+  }>;
 }
 
-const EditNews: FC<pageProps> = ({ params }) => {
+const EditNews: FC<pageProps> = (props) => {
+  const params = use(props.params);
   const route = useRouter();
   const news = useNewsData(params.newsId);
 
@@ -92,7 +93,7 @@ const EditNews: FC<pageProps> = ({ params }) => {
   return (
     <>
       <MenuBar label="news" />{" "}
-      <div className="min-h-[calc(100vh-80px)] dark:bg-paper bg-white lg:w-[900px] mx-auto p-10 rounded-lg">
+      <div className="bg-white dark:bg-paper mx-auto p-10 rounded-lg lg:w-[900px] min-h-[calc(100vh-80px)]">
         {news !== null ? (
           <>
             <Input
@@ -105,7 +106,7 @@ const EditNews: FC<pageProps> = ({ params }) => {
               value={description}
               onChange={(e) => setDescription(e.target.value)}
               placeholder="Description Goes Here ..."
-              className="text-muted-foreground my-5"
+              className="my-5 text-muted-foreground"
             />
             <SunEditor
               setContents={content}
@@ -145,11 +146,11 @@ const EditNews: FC<pageProps> = ({ params }) => {
                 ],
               }}
             />
-            <div className="py-10 items-center flex justify-between">
+            <div className="flex justify-between items-center py-10">
               <div className="space-x-4">
                 <Button
                   onClick={handleSubmit}
-                  className="bg-yellow-600  hover:bg-yellow-700"
+                  className="bg-yellow-600 hover:bg-yellow-700"
                 >
                   Edit News
                 </Button>
@@ -162,7 +163,7 @@ const EditNews: FC<pageProps> = ({ params }) => {
               </div>
               <Button
                 onClick={handleNewsDeletion}
-                className="bg-red-600 text-white hover:bg-red-700 w-auto"
+                className="bg-red-600 hover:bg-red-700 w-auto text-white"
               >
                 Delete News
               </Button>

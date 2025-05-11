@@ -2,16 +2,17 @@
 import useNovel from "@/firebase/Read/getNovelData";
 import useVolumes from "@/firebase/Read/getVolumes";
 import { useSearchParams } from "next/navigation";
-import React, { FC, useEffect, useState } from "react";
+import React, { FC, useEffect, useState, use } from "react";
 import { AiOutlineLoading } from "react-icons/ai";
 import NovelInfo from "./NovelInfo";
 import Chapter from "./Chapter";
 import Head from "next/head";
 
 interface pageProps {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }
-const Novel: FC<pageProps> = ({ params }) => {
+const Novel: FC<pageProps> = (props) => {
+  const params = use(props.params);
   const router = useSearchParams();
   const [chapterIndex, setChapterIndex] = useState(0);
   const [volumeIndex, setVolumeIndex] = useState(0);
@@ -39,7 +40,7 @@ const Novel: FC<pageProps> = ({ params }) => {
   // }, [novel]);
 
   return (
-    <div className="py-10 lg:w-[70%] mx-auto">
+    <div className="mx-auto py-10 lg:w-[70%]">
       <Head>
         <title>
           Read Pokemon Pokemon - A Real Story | TheSilverPrince | Pokemon,
@@ -65,7 +66,7 @@ const Novel: FC<pageProps> = ({ params }) => {
           )}
         </>
       ) : (
-        <div className="flex items-center justify-center mt-10">
+        <div className="flex justify-center items-center mt-10">
           <AiOutlineLoading className="animate-spin" size={40} />
         </div>
       )}

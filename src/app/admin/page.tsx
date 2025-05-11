@@ -11,8 +11,6 @@ const Admin: FC = () => {
 
   return (
     <>
-      <MenuBar label="admin" />
-
       {isLoading ? (
         <div className="flex flex-col justify-center items-center gap-10">
           <BasicSkeleton />
@@ -20,7 +18,7 @@ const Admin: FC = () => {
         </div>
       ) : (
         <div className="p-10">
-          <h2 className="text-3xl font-bold tracking-tight">Dashboard</h2>
+          <h2 className="font-bold text-3xl tracking-tight">Dashboard</h2>
           <div className="flex flex-wrap gap-4 mt-5">
             <InfoCard icon={<LuBook />} number={2} title="Total Novel" />
             <InfoCard icon={<LuUser />} number={2} title="Total User" />

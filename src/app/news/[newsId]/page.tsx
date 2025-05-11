@@ -7,17 +7,18 @@ import { doc, getDoc } from "firebase/firestore";
 import Head from "next/head";
 
 import { useRouter } from "next/navigation";
-import React, { FC, useEffect, useState } from "react";
+import React, { FC, useEffect, useState, use } from "react";
 import { AiOutlineLoading } from "react-icons/ai";
 import { LuCalendar } from "react-icons/lu";
 
 interface newspageProps {
-  params: {
+  params: Promise<{
     newsId: string;
-  };
+  }>;
 }
 
-const News: FC<newspageProps> = ({ params }) => {
+const News: FC<newspageProps> = (props) => {
+  const params = use(props.params);
   const [news, setNews] = useState<newsProps | null>(null);
   const route = useRouter();
 
@@ -63,15 +64,15 @@ const News: FC<newspageProps> = ({ params }) => {
   }, [news]);
 
   return (
-    <div className="min-h-[calc(100vh-80px)] dark:bg-paper bg-white lg:w-[900px] mx-auto p-10 rounded-lg">
+    <div className="bg-white dark:bg-paper mx-auto p-10 rounded-lg lg:w-[900px] min-h-[calc(100vh-80px)]">
       {news !== null ? (
         <>
           <Head>
             <title>{news.title} | The SilverPrince</title>
             <meta name="description" content={news.description}></meta>
           </Head>
-          <h1 className="text-2xl font-bold tracking-wide">{news.title}</h1>
-          <p className="text-muted-foreground text-sm mt-1 flex gap-2 items-center">
+          <h1 className="font-bold text-2xl tracking-wide">{news.title}</h1>
+          <p className="flex items-center gap-2 mt-1 text-muted-foreground text-sm">
             <LuCalendar />
             {news.date.toDate().getFullYear() +
               " / " +
@@ -80,7 +81,7 @@ const News: FC<newspageProps> = ({ params }) => {
               news.date.toDate().getDay()}
           </p>
           <p
-            className="text-muted-foreground mt-5"
+            className="mt-5 text-muted-foreground"
             dangerouslySetInnerHTML={{ __html: news.description }}
           />
           <p
@@ -89,7 +90,7 @@ const News: FC<newspageProps> = ({ params }) => {
           />
         </>
       ) : (
-        <div className="w-full h-full justify-center items-center">
+        <div className="justify-center items-center w-full h-full">
           <AiOutlineLoading size={30} className="animate-spin" />
         </div>
       )}

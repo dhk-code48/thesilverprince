@@ -74,9 +74,8 @@ const AddNovel: FC = () => {
 
   return (
     <div className="w-screen">
-      <MenuBar label="novel" />{" "}
-      <div className="pt-10 lg:w-[70%] mx-auto">
-        <form onSubmit={onSubmit} className="flex justify-stretch mt-10 gap-10">
+      <div className="mx-auto pt-10 lg:w-[70%]">
+        <form onSubmit={onSubmit} className="flex justify-stretch gap-10 mt-10">
           <div>
             <Image
               src={bannerSrc || ""}
@@ -95,7 +94,7 @@ const AddNovel: FC = () => {
               placeholder="Source Image for Banner"
             />
           </div>
-          <div className="flex justify-between flex-col">
+          <div className="flex flex-col justify-between">
             <div>
               <Input
                 {...register("title")}
@@ -105,9 +104,9 @@ const AddNovel: FC = () => {
               <Input
                 {...register("tags")}
                 placeholder="Tags Goes Here ....."
-                className="text-muted-foreground mt-1"
+                className="mt-1 text-muted-foreground"
               />
-              <div className="mt-8 flex gap-5 items-center w-auto">
+              <div className="flex items-center gap-5 mt-8 w-auto">
                 <Rating rating={rating || 0} />
                 <Input
                   type="text"
@@ -119,7 +118,7 @@ const AddNovel: FC = () => {
                   })}
                   className="w-12"
                 />
-                <p className="text-lg cursor-pointer flex">
+                <p className="flex text-lg cursor-pointer">
                   <Input
                     {...register("webLink")}
                     className="text-blue-500"
@@ -128,7 +127,7 @@ const AddNovel: FC = () => {
                 </p>
               </div>
             </div>
-            <h1 className="text-xl font-bold pb-2">Synopsis</h1>
+            <h1 className="pb-2 font-bold text-xl">Synopsis</h1>
             <Textarea
               placeholder="Synopsis Goes Here...."
               {...register("synopsis")}
@@ -137,7 +136,7 @@ const AddNovel: FC = () => {
             <div className="py-10">
               <Button
                 type="submit"
-                className="bg-destructive text-destructive-foreground hover:bg-red-700"
+                className="bg-destructive hover:bg-red-700 text-destructive-foreground"
               >
                 Save Changes
               </Button>{" "}
