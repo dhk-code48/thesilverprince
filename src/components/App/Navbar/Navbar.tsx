@@ -1,81 +1,47 @@
 "use client";
 import React, { FC } from "react";
-import { LuBookMinus, LuMegaphone, LuInfo } from "react-icons/lu";
-import { CgHome, CgPatreon } from "react-icons/cg";
+import { CgPatreon } from "react-icons/cg";
 import Link from "next/link";
-import { FiHome } from "react-icons/fi";
 import Image from "next/image";
 import NavLink from "./NavLink";
 import ThemeToggle from "../ThemeToggle";
-import DropDown from "./DropDown";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { UseAuth } from "@/context/AuthContext";
+import { useScroll } from "@/lib/hooks";
+import { cn } from "@/lib/utils";
+import MaxWidthWrapper from "@/components/shared/max-width-wrapper";
 
 const Navbar: FC = () => {
+  const scrolled = useScroll(50);
+
   const { isLogIn, isLoading, user } = UseAuth();
   return (
     <>
-      <div className="lg:hidden flex justify-between px-5 w-full">
-        <Image src="/logo.png" width={70} height={70} alt="website logo" />
-
-        <div className="flex items-center gap-4">
-          <ThemeToggle />
-          <Link
-            href={"https://www.patreon.com/TheSilverPrince1"}
-            target="_blank"
-            className={buttonVariants({ variant: "outline" })}
-          >
-            <CgPatreon size={20} />
+      <div
+        className={cn(
+          "lg:top-0 bottom-0 sticky z-40 overflow-hidden bg-background/60 backdrop-blur-xl transition-all",
+          scrolled ? "border-b" : "bg-background"
+        )}
+      >
+        <MaxWidthWrapper className="flex justify-between items-center py-4 h-14">
+          <Link href={"/"}>
+            <Image
+              src="/logo.png"
+              width={70}
+              height={70}
+              alt="website logo"
+              className="size-12"
+            />
           </Link>
-          {isLogIn ? (
-            <Button isLoading={isLoading} variant={"ghost"} className="p-0">
-              <Image
-                src={user.photoUrl}
-                alt="user profile"
-                className="rounded-full"
-                width={30}
-                height={30}
-              />
-            </Button>
-          ) : (
-            <Link href={"/sign-in"}>
-              <Button isLoading={isLoading}>Login</Button>
-            </Link>
-          )}
-        </div>
-      </div>
-      <div className="lg:top-0 bottom-0 z-10 fixed bg-background w-screen h-20 overflow-hidden">
-        <div className="flex justify-center lg:justify-between items-center mx-auto w-full lg:w-[70%] h-full">
-          <div className="lg:flex lg:gap-12">
-            <Link href={"/"} className="hidden lg:inline-block">
-              <Image
-                src="/logo.png"
-                width={70}
-                height={70}
-                alt="website logo"
-              />
-            </Link>
-            <div className="flex gap-10">
-              <NavLink to="/" icon={<FiHome size={24} />} label="Home" />
-              <NavLink
-                to="/novel"
-                icon={<LuBookMinus size={24} />}
-                label="Novels"
-              />
-              <NavLink
-                to="/news"
-                icon={<LuMegaphone size={24} />}
-                label="News"
-              />
-              <NavLink to="/about" icon={<LuInfo size={24} />} label="About" />
-              <NavLink
-                className="lg:hidden flex"
-                icon={<DropDown />}
-                label="More"
-              />
-            </div>
+
+          <div className="hidden md:flex gap-5">
+            <NavLink to="/" label="Home" />
+            <NavLink to="/novel" label="Novels" />
+            <NavLink to="/news" label="News" />
+            <NavLink to="/about" label="About" />
           </div>
-          <div className="hidden lg:flex items-center gap-4">
+
+          <div className="flex items-center gap-4">
             <ThemeToggle />
             <Link
               href={"https://www.patreon.com/TheSilverPrince1"}
@@ -102,7 +68,7 @@ const Navbar: FC = () => {
               </Link>
             )}
           </div>
-        </div>
+        </MaxWidthWrapper>
       </div>
     </>
   );

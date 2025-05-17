@@ -105,7 +105,7 @@ export default function AppSlider() {
     );
   }
   return (
-    <div className="relative mx-auto mb-10 rounded-lg max-w-4xl overflow-hidden">
+    <div className="relative rounded-lg overflow-hidden">
       {/* Main carousel */}
       <div className="relative" ref={emblaRef}>
         <div className="flex">

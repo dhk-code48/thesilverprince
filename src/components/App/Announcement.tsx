@@ -13,6 +13,7 @@ import {
 import { Skeleton } from "../ui/skeleton";
 import { Button, buttonVariants } from "../ui/button";
 import { cn } from "@/lib/utils";
+import { CalendarDays } from "lucide-react";
 
 interface cardProps {
   title: string;
@@ -21,6 +22,7 @@ interface cardProps {
   onClick?: () => void;
   id: string;
   to: string;
+  className?: string;
 }
 
 const AnnouncementCard: FC<cardProps> = ({
@@ -30,28 +32,37 @@ const AnnouncementCard: FC<cardProps> = ({
   date,
   onClick,
   id,
+  className,
 }) => {
   return (
     <>
-      <Card onClick={onClick} className="w-full lg:w-[350px]">
-        <CardHeader>
-          <CardTitle>{title}</CardTitle>
-          <CardDescription>
-            Published on :{" "}
-            {date &&
-              date?.getFullYear() +
-                "/" +
-                date?.getMonth() +
-                "/" +
-                date?.getDay()}
-          </CardDescription>
+      <Card
+        onClick={onClick}
+        className={cn(
+          "shadow-sm hover:shadow-md border transition-all hover:-translate-y-1 duration-300",
+          className
+        )}
+      >
+        <CardHeader className="pb-2">
+          <CardTitle className="font-bold text-lg">{title}</CardTitle>
+          <div className="flex items-center text-gray-500 text-sm">
+            <CalendarDays className="mr-1 w-3.5 h-3.5" />
+            <span>
+              Published on :{" "}
+              {date &&
+                date?.getFullYear() +
+                  "/" +
+                  date?.getMonth() +
+                  "/" +
+                  date?.getDay()}
+            </span>{" "}
+          </div>
         </CardHeader>
-        <CardContent className="pb-2">
-          <p className="text-justify h-[190px] overflow-hidden">
-            {description}
-          </p>
+
+        <CardContent className="py-2">
+          <p className="text-gray-600 text-sm line-clamp-3">{description}</p>
         </CardContent>
-        <CardFooter className="flex justify-end p-0 pb-2 pr-2">
+        <CardFooter className="pt-2">
           <Link
             href={to + "/" + id}
             className={cn(
@@ -67,4 +78,20 @@ const AnnouncementCard: FC<cardProps> = ({
   );
 };
 
+/*
+        
+        {content}</p>
+      </CardContent>
+        <Button
+          asChild
+          variant="ghost"
+          size="sm"
+          className="ml-auto text-red-600 hover:text-red-700 transition-all hover:translate-x-1"
+        >
+          <Link href={`/news/${slug}`}>Read More</Link>
+        </Button>
+      </CardFooter>
+    </Card>
+
+*/
 export default AnnouncementCard;

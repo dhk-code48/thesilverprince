@@ -1,27 +1,38 @@
+"use client";
+
 import { cn } from "@/lib/utils";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import React, { FC } from "react";
 
 interface linkProps {
   label: string;
-  icon: React.ReactNode;
   className?: string;
   to?: string | null;
 }
 
-const NavLink: FC<linkProps> = ({ label, icon, className, to }) => {
+const NavLink: FC<linkProps> = ({ label, className, to }) => {
+  const path = usePathname();
+  const selected = path === to;
   return (
     <Link
       href={to ? to : "/"}
       className={cn(
-        "lg:flex-row lg:text-lg font-semibold text-sm flex items-center flex-col text-slate-700 dark:text-slate-400",
-        className
+        "font-medium transition-colors hover:text-red-600 relative group",
+        className,
+        selected && "text-primary"
       )}
     >
-      {icon}
-      <p className="lg:ml-2">{label}</p>
+      {label}
+      <span className="-bottom-1 left-0 absolute bg-red-600 w-0 group-hover:w-full h-0.5 transition-all"></span>
     </Link>
   );
 };
 
+/*
+  <Link href="/" className="group relative font-medium hover:text-red-600 text-sm transition-colors">
+              Home
+              <span className="-bottom-1 left-0 absolute bg-red-600 w-0 group-hover:w-full h-0.5 transition-all"></span>
+            </Link>
+*/
 export default NavLink;

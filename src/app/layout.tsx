@@ -1,7 +1,7 @@
 import Navbar from "@/components/App/Navbar/Navbar";
 import "../styles/global.css";
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Poppins } from "next/font/google";
 import { ThemeProvider } from "@/lib/theme-provider";
 import { AuthProvider } from "@/context/AuthContext";
 import Head from "next/head";
@@ -12,8 +12,7 @@ import { ModalContainer } from "@/components/shared/modal/modal-container";
 import { Toaster } from "@/components/ui/sonner";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import Providers from "./providers";
-
-const inter = Inter({ subsets: ["latin"] });
+import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
   title: "TheSilverPrince",
@@ -22,6 +21,12 @@ export const metadata: Metadata = {
     "Rahul Manandhar (Pen name: The Silver Prince) was born in Nepal. He is a light novel writer and has been writing since 2019. He is famous for his novel ‘Pokemon- a real story’ which has been published in webnovels, Fanfiction.net and AO3.",
 };
 
+export const fontSans = Poppins({
+  subsets: ["latin"],
+  variable: "--font-sans",
+  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
+});
+
 export default function RootLayout({
   children,
 }: {
@@ -29,7 +34,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={inter.className + " bg-slate-100 dark:bg-background"}>
+      <body
+        className={cn(
+          "min-h-screen bg-background font-sans antialiased",
+          fontSans.variable
+        )}
+      >
+        {" "}
         <Head>
           <meta property="og:title" content="TheSilverPrince" />
           <meta

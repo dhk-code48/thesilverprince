@@ -6,6 +6,7 @@ import { ModalProvider } from "@/components/shared/modal/modal-provider";
 import { AuthProvider } from "@/context/AuthContext";
 import { ThemeProvider } from "@/lib/theme-provider";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import React from "react";
 import { Toaster } from "sonner";
 
@@ -17,13 +18,14 @@ export default function Providers({ children }: { children: React.ReactNode }) {
       <QueryClientProvider client={publicClient}>
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
           <ModalProvider>
-            <Navbar />
-            <main className="lg:pt-20 pb-32 lg:pb-0 min-h-screen">
-              {children}
-            </main>
-            <Footer />
+            <div className="flex flex-col min-h-screen">
+              <Navbar />
+              <main className="flex-1">{children}</main>
+              <Footer />
+            </div>
             <ModalContainer />
             <Toaster richColors position="top-right" />
+            <ReactQueryDevtools client={publicClient} />
           </ModalProvider>
         </ThemeProvider>
       </QueryClientProvider>

@@ -1,70 +1,98 @@
 "use client";
 import AnnouncementCard from "@/components/App/Announcement";
 import AppSlider from "@/components/App/AppSlider";
-import NovelCard from "@/components/App/Novel/NovelCard";
+
+import FeaturedNovel from "@/components/landing/featured-novel";
+import LandingNews from "@/components/landing/landing-news";
+import MaxWidthWrapper from "@/components/shared/max-width-wrapper";
 import BasicSkeleton from "@/components/Skleaton";
+import { Button } from "@/components/ui/button";
 import useNews from "@/firebase/Read/getNews";
-import useNovels from "@/firebase/Read/getNovels";
-import useSlides from "@/firebase/Read/getSlides";
+
+import { BookOpen, Clock, Users } from "lucide-react";
+
+import Link from "next/link";
 
 export default function Home() {
-  const novels = useNovels();
-  const news = useNews();
   return (
-    <div className="mb-24 px-5 pt-10 overflow-hidden lg:text-center">
+    <MaxWidthWrapper className="space-y-6 md:space-y-14 py-10">
       <AppSlider />
-      <h1 className="font-display text-2xl lg:text-5xl text-center tracking-wide text-accent-foreground">
-        Freedom <br />
-        From Reality
-      </h1>
-      <div className="mt-10 text-center">
-        <span className="font-semibold text-sm tracking-wide">
-          Recent Novels
-        </span>
-        <div className="flex flex-wrap justify-center mx-auto w-[70%]">
-          {novels !== null ? (
-            novels.map((novel, index) => {
-              return (
-                <NovelCard
-                  key={index + novel.id}
-                  to={"/novel/" + novel.id}
-                  src={novel.banner}
-                  tags={novel.tags}
-                  title={novel.title}
-                />
-              );
-            })
-          ) : (
-            <BasicSkeleton />
-          )}
-        </div>
-      </div>
-      <h1>
-        <div className="lg:mx-auto mt-10 pt-6 lg:w-[1000px] text-center">
-          <h1 className="font-bold text-black-500 text-3xl">Announcements</h1>
-          <p className="mt-1 font-semibold text-slate-400 dark:text-slate-300 text-sm">
-            Recent Announcements
-          </p>
-          <div className="flex flex-wrap justify-center gap-20 mt-10">
-            {news !== null ? (
-              news.map((news, index) => {
-                return (
-                  <AnnouncementCard
-                    key={index + news.id}
-                    to="/news/"
-                    title={news.title}
-                    date={news.date.toDate()}
-                    description={news.description}
-                    id={news.id}
-                  />
-                );
-              })
-            ) : (
-              <BasicSkeleton />
-            )}
+
+      <section className="relative">
+        <div className="absolute inset-0 bg-gradient-radial from-primary/50 to-transparent"></div>
+        <div className="z-10 relative">
+          <div className="flex flex-col items-center mx-auto mb-12 max-w-4xl text-center">
+            <div className="relative">
+              <h2 className="mb-4 font-bold text-primary text-5xl md:text-7xl tracking-tight animate-float">
+                Freedom
+              </h2>
+              <h2 className="mb-8 font-bold text-primary text-5xl md:text-7xl tracking-tight animate-float animation-delay-300">
+                From Reality
+              </h2>
+              <div className="-top-8 -left-8 absolute bg-primary/30 rounded-full w-16 h-16 animate-pulse"></div>
+              <div className="-right-8 -bottom-8 absolute bg-primary/30 rounded-full w-16 h-16 animate-pulse animation-delay-700"></div>
+            </div>
+            <p className="z-5 max-w-2xl text-muted-foreground text-xl animate-fade-in animation-delay-500">
+              Dive into captivating worlds crafted by passionate writers. Escape
+              reality and embark on extraordinary adventures.
+            </p>
+            <div className="flex flex-wrap justify-center gap-4 mt-8 animate-fade-in animation-delay-700">
+              <Button asChild className="hover:scale-105 transition-transform">
+                <Link href="/novels/pokemon-a-real-story">Start Reading</Link>
+              </Button>
+              <Button
+                asChild
+                variant="outline"
+                className="hover:scale-105 transition-transform"
+              >
+                <Link href="/about">About the Author</Link>
+              </Button>
+            </div>
+            <div className="gap-8 grid grid-cols-1 md:grid-cols-3 mt-12 w-full">
+              <div className="bg-card shadow-md hover:shadow-lg p-6 border border-border rounded-lg transition-all hover:-translate-y-1">
+                <div className="flex justify-center items-center bg-primary/30 mx-auto mb-4 rounded-full w-12 h-12">
+                  <BookOpen className="w-6 h-6 text-primary" />
+                </div>
+                <h3 className="mb-2 font-bold text-lg text-center">
+                  Immersive Story
+                </h3>
+                <p className="text-muted-foreground text-sm text-center">
+                  Experience a realistic take on the Pokemon universe unlike
+                  anything you&apos;ve read before.
+                </p>
+              </div>
+              <div className="bg-card shadow-md hover:shadow-lg p-6 border border-border rounded-lg transition-all hover:-translate-y-1">
+                <div className="flex justify-center items-center bg-primary/20 mx-auto mb-4 rounded-full w-12 h-12">
+                  <Clock className="w-6 h-6 text-primary" />
+                </div>
+                <h3 className="mb-2 font-bold text-lg text-center">
+                  Regular Updates
+                </h3>
+                <p className="text-muted-foreground text-sm text-center">
+                  New chapters released frequently to keep you engaged in the
+                  evolving story.
+                </p>
+              </div>
+              <div className="bg-card shadow-md hover:shadow-lg p-6 border border-border rounded-lg transition-all hover:-translate-y-1">
+                <div className="flex justify-center items-center bg-primary/20 mx-auto mb-4 rounded-full w-12 h-12">
+                  <Users className="w-6 h-6 text-primary" />
+                </div>
+                <h3 className="mb-2 font-bold text-lg text-center">
+                  Community
+                </h3>
+                <p className="text-muted-foreground text-sm text-center">
+                  Join discussions with other readers and share your thoughts on
+                  the latest chapters.
+                </p>
+              </div>
+            </div>
           </div>
         </div>
-      </h1>
-    </div>
+      </section>
+
+      {/* <FeaturedNovel /> */}
+
+      <LandingNews />
+    </MaxWidthWrapper>
   );
 }

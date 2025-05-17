@@ -22,6 +22,7 @@ import {
   FaX,
   FaXTwitter,
 } from "react-icons/fa6";
+import MaxWidthWrapper from "./max-width-wrapper";
 
 export default function Footer() {
   const { isLogIn, isLoading, user } = UseAuth();
@@ -32,9 +33,9 @@ export default function Footer() {
 
   return (
     !path.includes("/admin") && (
-      <footer className="bg-background text-foreground">
+      <footer className="bg-background border-t text-foreground">
         {/* Main Footer Content */}
-        <div className="mx-auto px-4 py-10 container">
+        <MaxWidthWrapper className="py-10 container">
           <div className="gap-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
             {/* Website Info */}
             <div className="space-y-4">
@@ -130,7 +131,7 @@ export default function Footer() {
                 <Input
                   type="text"
                   placeholder="Search..."
-                  className="rounded-r-none focus-visible:ring-0"
+                  className="bg-secondary rounded-r-none focus-visible:ring-0"
                 />
                 <Button
                   onClick={() => router.push("/novel")}
@@ -167,7 +168,7 @@ export default function Footer() {
               </div>
             </div>
           </div>
-        </div>
+        </MaxWidthWrapper>
 
         {/* Copyright Section */}
         <div className="py-6 border-t border-border text-center">
