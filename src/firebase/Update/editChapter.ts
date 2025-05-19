@@ -10,6 +10,7 @@ interface editProps {
   chapter: chapterProps;
   chapterTitle: string;
   chapterContent: string;
+  scheduleAt: string | null;
 
   novelId: string;
   tableContents: tabeleOfContents[];
@@ -22,6 +23,7 @@ const editChapter = async ({
   volume,
   tableContents,
   chapter,
+  scheduleAt,
 }: editProps) => {
   const chapterRef = doc(
     db,
@@ -38,6 +40,7 @@ const editChapter = async ({
     publishedOn: Timestamp.fromDate(new Date(chapter.publishedOn.toDate())),
     title: chapterTitle,
     content: chapterContent,
+    scheduleAt,
   }).then(() => {
     setDoc(doc(db, "Novels", novelId, "Volumes", volume.id), {
       ...volume,

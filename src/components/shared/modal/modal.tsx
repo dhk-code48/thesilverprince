@@ -9,7 +9,7 @@ import { useModal } from "./modal-provider";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 
-export type ModalSize = "sm" | "md" | "lg" | "xl" | "full";
+export type ModalSize = "sm" | "md" | "lg" | "xl" | "full" | "5xl";
 
 interface ModalProps {
   title?: string;
@@ -103,6 +103,7 @@ export function Modal({
     md: "max-w-md",
     lg: "max-w-lg",
     xl: "max-w-xl",
+    "5xl": "max-w-5xl",
     full: "max-w-[95vw] h-[90vh]",
   };
 

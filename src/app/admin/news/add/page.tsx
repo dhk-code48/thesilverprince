@@ -60,8 +60,7 @@ const AddNews: FC = () => {
   });
 
   return (
-    <div className="min-h-[calc(100vh-80px)] dark:bg-paper bg-white lg:w-[900px] mx-auto p-10 rounded-lg">
-      <MenuBar label="novel" />{" "}
+    <div className="bg-white dark:bg-paper mx-auto p-10 rounded-lg lg:w-[900px] min-h-[calc(100vh-80px)]">
       <form onSubmit={onSubmit}>
         <Input
           {...register("title")}
@@ -71,7 +70,7 @@ const AddNews: FC = () => {
         <Textarea
           {...register("description")}
           placeholder="Description Goes Here ..."
-          className="text-muted-foreground my-5"
+          className="my-5 text-muted-foreground"
         />
         <SunEditor
           onChange={handleEditorChange}
@@ -110,10 +109,10 @@ const AddNews: FC = () => {
             ],
           }}
         />
-        <div className="py-10 space-x-4">
+        <div className="space-x-4 py-10">
           <Button
             type="submit"
-            className="bg-green-600 text-white hover:bg-green-700"
+            className="bg-green-600 hover:bg-green-700 text-white"
           >
             Add News
           </Button>

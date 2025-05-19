@@ -67,21 +67,21 @@ const Collapse: React.FC<pageProps> = ({
     <Collapsible
       open={isOpen}
       onOpenChange={setIsOpen}
-      className="my-5 space-y-2"
+      className="space-y-2 my-5"
     >
-      <div className="flex border items-center justify-between space-x-4 px-3 lg:px-10 py-2 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-800">
-        <h4 className="text-xl font-semibold">
+      <div className="flex justify-between items-center space-x-4 hover:bg-slate-200 dark:hover:bg-slate-800 px-3 lg:px-10 py-2 border rounded-lg">
+        <h4 className="font-semibold text-xl">
           Volume {index} : {title}
         </h4>
         <CollapsibleTrigger asChild>
-          <Button variant="ghost" size="sm" className="w-9 p-0">
-            <LuChevronDown className="h-4 w-4" />
+          <Button variant="ghost" size="sm" className="p-0 w-9">
+            <LuChevronDown className="w-4 h-4" />
             <span className="sr-only">Toggle</span>
           </Button>
         </CollapsibleTrigger>
       </div>
 
-      <CollapsibleContent className="space-y-2 grid grid-col-1 lg:grid-cols-2">
+      <CollapsibleContent className="space-y-2 grid lg:grid-cols-2 grid-col-1">
         {volume !== null ? (
           volume.tabeleOfContents.map((chapter, cI) => {
             return (
@@ -90,7 +90,7 @@ const Collapse: React.FC<pageProps> = ({
                   "/novel/" + novelId + "/?chapter=[" + index + "," + cI + "]"
                 }
                 key={cI + chapter.id}
-                className="text-lg rounded-md border-b ml-5 py-3 px-2 lg:px-5 cursor-pointer hover:bg-slate-200 dark:hover:bg-slate-800"
+                className="hover:bg-slate-200 dark:hover:bg-slate-800 ml-5 px-2 lg:px-5 py-3 border-b rounded-md text-lg cursor-pointer"
               >
                 Chapter {index === 0 ? cI : cI + chapterIndex + 1}:{" "}
                 {chapter.title}
@@ -101,7 +101,7 @@ const Collapse: React.FC<pageProps> = ({
             );
           })
         ) : (
-          <div className="rounded-md border-b flex justify-center py-5">
+          <div className="flex justify-center py-5 border-b rounded-md">
             <AiOutlineLoading className="animate-spin" size={30} />
           </div>
         )}

@@ -1,13 +1,9 @@
 "use client";
-import AnnouncementCard from "@/components/App/Announcement";
 import AppSlider from "@/components/App/AppSlider";
 
-import FeaturedNovel from "@/components/landing/featured-novel";
 import LandingNews from "@/components/landing/landing-news";
 import MaxWidthWrapper from "@/components/shared/max-width-wrapper";
-import BasicSkeleton from "@/components/Skleaton";
 import { Button } from "@/components/ui/button";
-import useNews from "@/firebase/Read/getNews";
 
 import { BookOpen, Clock, Users } from "lucide-react";
 

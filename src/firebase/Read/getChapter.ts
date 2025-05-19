@@ -7,6 +7,7 @@ export interface chapterProps {
   publishedOn: Timestamp;
   title: string;
   id: string;
+  scheduleAt?: string | null;
 }
 
 const useChapter = (novelId: string, volumeId: string, chpaterId: string) => {
@@ -28,6 +29,7 @@ const useChapter = (novelId: string, volumeId: string, chpaterId: string) => {
       if (doc.exists()) {
         setChapter({
           id: doc.id,
+          ...doc.data(),
           content: doc.data().content,
           publishedOn: doc.data().publishedOn,
           title: doc.data().title,

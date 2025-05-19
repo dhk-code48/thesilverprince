@@ -28,23 +28,23 @@ const Tab: FC<props> = ({
       className={cn("w-[400px] overflow-hidden", className)}
       {...props}
     >
-      <TabsList className="flex justify-start h-auto bg-background text-left">
+      <TabsList className="flex justify-start bg-background h-auto text-left">
         <TabsTrigger
-          className="data-[state=active]:text-blue-500 border-r px-10 font-bold text-xl"
+          className="px-10 border-r font-bold data-[state=active]:text-blue-500 text-xl"
           value="about"
         >
           About
         </TabsTrigger>
         <TabsTrigger
-          className="data-[state=active]:text-blue-500 border-l px-10 font-bold text-xl"
+          className="px-10 border-l font-bold data-[state=active]:text-blue-500 text-xl"
           value="tabelContents"
         >
           Table Of Contents
         </TabsTrigger>
       </TabsList>
-      <TabsContent value="about" className="pt-10 px-5">
-        <h1 className="text-xl font-bold pb-2">Synopsis</h1>
-        <p className=" text-justify text-lg">{synopsis}</p>
+      <TabsContent value="about" className="px-5 pt-10">
+        <h1 className="pb-2 font-bold text-xl">Synopsis</h1>
+        <p className="text-lg text-justify">{synopsis}</p>
       </TabsContent>
       <TabsContent value="tabelContents">
         <div>
@@ -52,16 +52,16 @@ const Tab: FC<props> = ({
             href={`/novel/${novelId}?chapter=[${volumes?.length - 1},${
               volumes[volumes?.length - 1]?.tabeleOfContents.length - 1
             }]`}
-            className="group block lg:px-10 px-0 border-y py-5 mt-8 hover:bg-blue-400 rounded-xl cursor-pointer"
+            className="group block hover:bg-blue-400 mt-8 px-0 lg:px-10 py-5 border-y rounded-xl cursor-pointer"
           >
             <Button
-              className="font-bold rounded-full mb-3"
+              className="mb-3 rounded-full font-bold"
               size={"sm"}
               variant={"outline"}
             >
               Recent Released Chapter
             </Button>
-            <p className="text-black-600 text-[20px] group-hover:text-white">
+            <p className="text-[20px] text-black-600 group-hover:text-white">
               Volume : {volumes[volumes.length - 1]?.name} || Chapter :
               {
                 volumes[volumes.length - 1]?.tabeleOfContents[

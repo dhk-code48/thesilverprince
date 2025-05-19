@@ -11,6 +11,7 @@ import { useEffect, useState } from "react";
 export interface tabeleOfContents {
   id: string;
   title: string;
+  scheduleAt?: string;
 }
 
 export interface VolumeProps {
@@ -18,6 +19,7 @@ export interface VolumeProps {
   id: string;
   publishedOn: Timestamp;
   tabeleOfContents: tabeleOfContents[];
+  scheduleAt?: string;
 }
 
 const useVolumes = (novelId: string): VolumeProps[] => {

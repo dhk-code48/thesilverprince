@@ -10,12 +10,8 @@ import { motion, AnimatePresence } from "framer-motion";
 
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import {
-  useCollectionQuery,
-  useDocumentQuery,
-} from "@tanstack-query-firebase/react/firestore";
-import { collection, doc, orderBy, query } from "firebase/firestore";
-import { db } from "@/lib/firebaseConfig";
+import { useCollectionQuery } from "@tanstack-query-firebase/react/firestore";
+
 import { slidesRef } from "@/lib/firestore-ref";
 import { SilverPrinceSlide } from "@/lib/types";
 import { AdminErrorState } from "../Admin/ErrorState";

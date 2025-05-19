@@ -56,11 +56,11 @@ const AdminVolCollapse: React.FC<pageProps> = ({
     <Collapsible
       open={isOpen}
       onOpenChange={setIsOpen}
-      className="my-5 space-y-2"
+      className="space-y-2 my-5"
     >
-      <div className="flex border items-center justify-between space-x-4 px-10 py-2 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-800">
-        <div className="flex gap-20 items-center">
-          <h4 className="text-lg font-semibold">Volume {index} :</h4>
+      <div className="flex justify-between items-center space-x-4 hover:bg-slate-200 dark:hover:bg-slate-800 px-10 py-2 border rounded-lg">
+        <div className="flex items-center gap-20">
+          <h4 className="font-semibold text-lg">Volume {index} :</h4>
           <div className="flex gap-5">
             <Input
               value={volumeName}
@@ -80,8 +80,8 @@ const AdminVolCollapse: React.FC<pageProps> = ({
         </div>
 
         <CollapsibleTrigger asChild>
-          <Button variant="ghost" size="sm" className="w-9 p-0">
-            <LuChevronDown className="h-4 w-4" />
+          <Button variant="ghost" size="sm" className="p-0 w-9">
+            <LuChevronDown className="w-4 h-4" />
             <span className="sr-only">Toggle</span>
           </Button>
         </CollapsibleTrigger>
@@ -94,14 +94,14 @@ const AdminVolCollapse: React.FC<pageProps> = ({
               <div
                 onClick={() => setPageEdit(volume, chapter.id)}
                 key={chapterIndex + chapter.id}
-                className="text-lg rounded-md border-b ml-5 py-3 px-5 cursor-pointer hover:bg-slate-200 dark:hover:bg-slate-800"
+                className="hover:bg-slate-200 dark:hover:bg-slate-800 ml-5 px-5 py-3 border-b rounded-md text-lg cursor-pointer"
               >
                 Chapter {chapterIndex + 1}: {chapter.title}
               </div>
             );
           })
         ) : (
-          <div className="rounded-md border-b flex justify-center py-5">
+          <div className="flex justify-center py-5 border-b rounded-md">
             <AiOutlineLoading className="animate-spin" size={30} />
           </div>
         )}

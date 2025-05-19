@@ -23,6 +23,7 @@ import {
   FaXTwitter,
 } from "react-icons/fa6";
 import MaxWidthWrapper from "./max-width-wrapper";
+import { socialMedia } from "@/lib/constants";
 
 export default function Footer() {
   const { isLogIn, isLoading, user } = UseAuth();
@@ -48,35 +49,35 @@ export default function Footer() {
               </p>
               <div className="flex space-x-4">
                 <Link
-                  href="https://www.facebook.com/people/The-Silver-Prince/61576248986232/"
+                  href={socialMedia.FACEBOOK}
                   className="text-primary transition-colors"
                 >
                   <FaFacebook className="w-5 h-5" />
                   <span className="sr-only">Facebook</span>
                 </Link>
                 <Link
-                  href="https://www.instagram.com/thesilverprince2/"
+                  href={socialMedia.INSTAGRAM}
                   className="text-primary transition-colors"
                 >
                   <FaInstagram className="w-5 h-5" />
                   <span className="sr-only">Instagram</span>
                 </Link>
                 <Link
-                  href="https://x.com/Thsilverprince2"
+                  href={socialMedia.X}
                   className="text-primary transition-colors"
                 >
                   <FaXTwitter className="w-5 h-5" />
-                  <span className="sr-only">Instagram</span>
+                  <span className="sr-only">X (Twitter)</span>
                 </Link>
                 <Link
-                  href="https://discord.com/channels/1358385701917298688/1367159826961924229"
+                  href={socialMedia.DISCORD}
                   className="text-primary transition-colors"
                 >
                   <FaDiscord className="w-5 h-5" />
                   <span className="sr-only">Discord</span>
                 </Link>{" "}
                 <Link
-                  href="https://www.patreon.com/c/TheSilverPrince1"
+                  href={socialMedia.PATREON}
                   className="text-primary transition-colors"
                 >
                   <FaPatreon className="w-5 h-5" />

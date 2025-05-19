@@ -1,6 +1,7 @@
 "use client";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
 import { UseAuth } from "@/context/AuthContext";
 import addComment from "@/firebase/Create/addComment";
 import useComments from "@/firebase/Read/getComments";
@@ -28,7 +29,13 @@ const NovelComments: FC<pagePros> = ({
   const comments = useComments(novelId, volId, chapId);
 
   function handleCommentAddition() {
-    if (volId && chapId && user.displayName && isLogIn) {
+    if (
+      volId &&
+      chapId &&
+      user.displayName &&
+      isLogIn &&
+      newComment.length > 1
+    ) {
       addComment({
         volId: volId,
         chapterId: chapId,
@@ -44,7 +51,7 @@ const NovelComments: FC<pagePros> = ({
   return (
     <div className="mt-10">
       {isLogIn ? (
-        <div className="flex  items-center mt-5 lg:p-5 pb-3">
+        <div className="flex items-center mt-5 lg:p-5 pb-3">
           <Image
             alt="user profile"
             src={user.photoUrl}
@@ -52,32 +59,35 @@ const NovelComments: FC<pagePros> = ({
             height={48}
             className="rounded-full"
           />
-          <Input
-            onFocus={() => setFocusState(true)}
-            value={newComment}
-            onChange={(e) => setNewComment(e.target.value)}
-            placeholder="Enter your Comment..."
-            className="w-full focus:border-blue-300 focus:border-b-2 outline-none mx-2 lg:mx-5 text-[18px] font-body tracking-wide border-b border-gray-300 py-2"
-          />
-          {focusState && (
-            <div className="flex items-center justify-end w-full mt-1">
-              <div
-                onClick={() => {
-                  setNewComment("");
-                  setFocusState(false);
-                }}
-                className="mx-1 bg-red-500 w-8 h-8 flex items-center justify-center rounded-lg text-white"
-              >
-                <LuX size={18} />
+          <div className="relative w-full">
+            <Textarea
+              rows={3}
+              onFocus={() => setFocusState(true)}
+              value={newComment}
+              onChange={(e) => setNewComment(e.target.value)}
+              placeholder="Enter your Comment..."
+              className="mx-2 lg:mx-5 py-2 focus:border-b-2 focus:border-blue-300 outline-none w-full font-body"
+            />
+            {focusState && (
+              <div className="right-2 bottom-2 absolute flex justify-end items-center mt-1 w-full">
+                <div
+                  onClick={() => {
+                    setNewComment("");
+                    setFocusState(false);
+                  }}
+                  className="flex justify-center items-center bg-red-500 mx-1 rounded-lg w-8 h-8 text-white"
+                >
+                  <LuX size={18} />
+                </div>
+                <div
+                  onClick={handleCommentAddition}
+                  className="flex justify-center items-center bg-blue-500 mx-1 rounded-lg w-8 h-8 text-white"
+                >
+                  <LuSend size={18} />
+                </div>
               </div>
-              <div
-                onClick={handleCommentAddition}
-                className="mx-1 bg-blue-500 w-8 h-8 flex items-center justify-center rounded-lg text-white"
-              >
-                <LuSend size={18} />
-              </div>
-            </div>
-          )}
+            )}
+          </div>
         </div>
       ) : (
         <Link href={"/sign-in"} className={buttonVariants()}>
@@ -100,13 +110,13 @@ const NovelComments: FC<pagePros> = ({
                   <p className="font-bold text-muted-foreground">
                     {comment.displayName}
                   </p>
-                  <p className="text-sm text-muted-foreground">
+                  <p className="text-muted-foreground text-sm">
                     {comment.timestamp &&
                       moment(comment.timestamp.toDate()).fromNow()}
                   </p>
                 </div>
               </div>
-              <p className="ml-11 mt-1">{comment.message}</p>
+              <p className="mt-1 ml-11">{comment.message}</p>
             </div>
           );
         })}

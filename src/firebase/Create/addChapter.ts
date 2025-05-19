@@ -16,13 +16,14 @@ interface chapterProps {
   volume: VolumeProps;
   title: string;
   content: string;
+  scheduleAt?: string;
 }
 
 const addChapter = async ({
   novelId,
   title,
   content,
-
+  scheduleAt,
   volume,
 }: chapterProps) => {
   const chaptersRef = collection(
@@ -42,9 +43,10 @@ const addChapter = async ({
     title: title,
     content: content,
     publishedOn: serverTimestamp(),
+    scheduleAt,
   })
     .then((e) => {
-      tableContents.push({ title: title, id: e.id });
+      tableContents.push({ title: title, id: e.id, scheduleAt });
       setDoc(doc(db, "Novels", novelId, "Volumes", volume.id), {
         ...volume,
         timestamp: Timestamp.fromDate(volume.publishedOn.toDate()),

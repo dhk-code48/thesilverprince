@@ -92,7 +92,6 @@ const EditNews: FC<pageProps> = (props) => {
 
   return (
     <>
-      <MenuBar label="news" />{" "}
       <div className="bg-white dark:bg-paper mx-auto p-10 rounded-lg lg:w-[900px] min-h-[calc(100vh-80px)]">
         {news !== null ? (
           <>

@@ -20,7 +20,7 @@ const NavLink: FC<linkProps> = ({ label, className, to }) => {
       className={cn(
         "font-medium transition-colors hover:text-red-600 relative group",
         className,
-        selected && "text-primary"
+        selected && "text-primary font-semibold"
       )}
     >
       {label}
@@ -29,10 +29,4 @@ const NavLink: FC<linkProps> = ({ label, className, to }) => {
   );
 };
 
-/*
-  <Link href="/" className="group relative font-medium hover:text-red-600 text-sm transition-colors">
-              Home
-              <span className="-bottom-1 left-0 absolute bg-red-600 w-0 group-hover:w-full h-0.5 transition-all"></span>
-            </Link>
-*/
 export default NavLink;

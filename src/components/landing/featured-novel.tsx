@@ -1,3 +1,4 @@
+"use client";
 import { novelProps } from "@/firebase/Read/getNovelData";
 import { db } from "@/lib/firebaseConfig";
 import { useCollectionQuery } from "@tanstack-query-firebase/react/firestore";

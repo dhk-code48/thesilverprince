@@ -17,6 +17,8 @@ import useChapter, { chapterProps } from "@/firebase/Read/getChapter";
 import BasicSkeleton from "../Skleaton";
 import { Button } from "../ui/button";
 import deleteChapter from "@/firebase/Delete/deleteChapter";
+import { Checkbox } from "../ui/checkbox";
+import { Label } from "../ui/label";
 
 interface pageProps {
   novelId: string;
@@ -38,6 +40,9 @@ const EditChapter: FC<pageProps> = ({ novelId, setPageNovel, pageState }) => {
   const [content, setContent] = useState<string>("");
   const [title, setTitle] = useState<string>("");
 
+  const [schedule, setSchedule] = useState(false);
+  const [scheduleAt, setScheduleAt] = useState<string>("");
+
   const handleEditorChange = (content: string) => {
     setContent(content);
   };
@@ -46,6 +51,14 @@ const EditChapter: FC<pageProps> = ({ novelId, setPageNovel, pageState }) => {
     if (chapter !== null) {
       setTitle(chapter.title);
       setContent(chapter.content);
+      setSchedule(
+        chapter?.scheduleAt
+          ? new Date(chapter.scheduleAt)
+            ? true
+            : false
+          : false
+      );
+      setScheduleAt(chapter?.scheduleAt || "");
     }
   }, [chapter]);
 
@@ -54,7 +67,7 @@ const EditChapter: FC<pageProps> = ({ novelId, setPageNovel, pageState }) => {
       let tableContents: tabeleOfContents[] = pageState.volume.tabeleOfContents;
       tableContents = tableContents.map((item) =>
         item.id === pageState.chapterId
-          ? { title: title, id: pageState.chapterId }
+          ? { title: title, id: pageState.chapterId, scheduleAt }
           : item
       );
       editChapter({
@@ -63,6 +76,7 @@ const EditChapter: FC<pageProps> = ({ novelId, setPageNovel, pageState }) => {
         chapterTitle: title,
         chapterContent: content,
         volume: pageState.volume,
+        scheduleAt,
         tableContents: tableContents,
       }).finally(() => {
         setPageNovel();
@@ -73,10 +87,10 @@ const EditChapter: FC<pageProps> = ({ novelId, setPageNovel, pageState }) => {
 
   function handleChapterDeletion() {
     if (chapter !== null && pageState.volume !== null) {
-      let tableContents: tabeleOfContents[] = pageState.volume.tabeleOfContents;
-      tableContents = tableContents.filter(
-        (item) => item.id !== pageState.chapterId
-      );
+      let tableContents: tabeleOfContents[] =
+        pageState.volume.tabeleOfContents.filter(
+          (item) => item.id !== pageState.chapterId
+        );
 
       const a = prompt(
         "Enter the name of the chapter to delete (i.e) " + chapter.title
@@ -99,15 +113,15 @@ const EditChapter: FC<pageProps> = ({ novelId, setPageNovel, pageState }) => {
   }
 
   return (
-    <div>
-      <div className="flex justify-between items-center lg:w-[1300px] mx-auto p-10">
+    <div className="mb-10">
+      <div className="flex justify-between items-center mx-auto p-10 lg:w-[1300px]">
         <p
           onClick={setPageNovel}
-          className="bg-blue-400 text-white rounded px-3 py-1 inline-block"
+          className="inline-block bg-blue-400 px-3 py-1 rounded text-white"
         >
           <LuChevronsLeft size={22} />
         </p>
-        <div className="text-black-500 space-x-4">
+        <div className="space-x-4 text-black-500">
           <Button
             className="bg-red-700 text-white hover:text-black"
             onClick={handleChapterDeletion}
@@ -124,12 +138,12 @@ const EditChapter: FC<pageProps> = ({ novelId, setPageNovel, pageState }) => {
       </div>
 
       {chapter !== null ? (
-        <div className="max-w-[900px] mx-auto">
+        <div className="mx-auto max-w-[900px]">
           <Input
             placeholder="Title of an Chapter"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
-            className="px-5 py-2 mb-5 outline-blue-100 border rounded w-full text-2xl"
+            className="mb-5 px-5 py-2 border rounded outline-blue-100 w-full text-2xl"
           />
           <SunEditor
             setContents={content}
@@ -168,6 +182,36 @@ const EditChapter: FC<pageProps> = ({ novelId, setPageNovel, pageState }) => {
               ],
             }}
           />
+
+          <div className="space-y-3 bg-card p-4 rounded-md">
+            <div className="flex items-center gap-3">
+              <Checkbox
+                id="schedule"
+                className="border-primary"
+                checked={schedule}
+                onCheckedChange={(check) =>
+                  setSchedule(() => {
+                    if (typeof check === "boolean") {
+                      if (!check) setScheduleAt("");
+                      return check;
+                    }
+                    setScheduleAt("");
+                    return false;
+                  })
+                }
+              />
+              <Label htmlFor="schedule" className="font-medium">
+                Schedule Post?
+              </Label>
+            </div>
+            {schedule && (
+              <Input
+                type="datetime-local"
+                value={scheduleAt}
+                onChange={(e) => setScheduleAt(e.target.value)}
+              />
+            )}
+          </div>
         </div>
       ) : (
         <BasicSkeleton />

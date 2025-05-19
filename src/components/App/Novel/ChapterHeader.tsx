@@ -23,9 +23,9 @@ const ChapterHeader: FC<chProps> = ({
   novelId,
 }) => {
   return (
-    <div className="flex items-center lg:justify-between lg:gap-0 gap-5 justify-center flex-wrap-reverse">
+    <div className="flex flex-wrap-reverse justify-center lg:justify-between items-center gap-5 lg:gap-0">
       {!noTitle && (
-        <h1 className="text-3xl text-center lg:text-left font-bold">
+        <h1 className="font-bold text-3xl lg:text-left text-center">
           {chapterTitle}
         </h1>
       )}

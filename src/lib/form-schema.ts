@@ -44,6 +44,34 @@ export const SlideFormSchema = z.object({
 
 export type SlideFormType = z.infer<typeof SlideFormSchema>;
 
+export const BlogFormSchema = z.object({
+  banner: z.string().url({
+    message: "Please provide a valid banner URL",
+  }),
+  title: z
+    .string({ message: "Blog title is required" })
+    .min(5, { message: "Blog title must be more then 5 characters" }),
+  description: z.string().optional(),
+  content: z
+    .string({ message: "Blog content is required" })
+    .min(15, { message: "Blog content must be more then 15 characters" }),
+
+  seoTitle: z
+    .string({ message: "SEO title is required" })
+    .min(5, { message: "SEO title must be more then 5 characters" }),
+  seoDescription: z
+    .string({ message: "SEO Description is required" })
+    .min(15, { message: "SEO Description must be more then 15 characters" }),
+  ogImage: z.string().url({
+    message: "Please provide a og image URL",
+  }),
+
+  draft: z.boolean().default(true).optional(),
+  featured: z.boolean().default(false).optional(),
+});
+
+export type BlogFormType = z.infer<typeof BlogFormSchema>;
+
 // Generic form state type for reusability
 export interface FormState<T> {
   isSubmitting: boolean;

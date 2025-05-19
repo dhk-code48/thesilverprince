@@ -55,8 +55,8 @@ const SideBar: FC<sideProps> = ({
   }, [chapIndex]);
 
   return (
-    <div className="fixed top-[45px] right-10 lg:right-0 z-40 lg:h-screen dark:bg-slate-900 lg:bg-gray-200">
-      <div className="flex lg:h-screen lg:flex-col justify-center items-center gap-5 w-[50px]">
+    <div className="top-[45px] right-10 lg:right-0 z-40 fixed lg:bg-gray-200 dark:bg-slate-900 lg:h-screen">
+      <div className="flex lg:flex-col justify-center items-center gap-5 w-[50px] lg:h-screen">
         <Button
           variant={"ghost"}
           onClick={() => setDrawerState((prev) => !prev)}
@@ -70,9 +70,9 @@ const SideBar: FC<sideProps> = ({
       {drawerState && (
         <div
           ref={tcContainer}
-          className="fixed lg:w-[400px] w-[80%] pb-20 scrollbar top-20 right-0 lg:right-[70px] rounded p-5 h-screen dark:bg-slate-900 bg-gray-200 overflow-y-scroll"
+          className="top-20 right-0 lg:right-[70px] fixed bg-gray-200 dark:bg-slate-900 p-5 pb-20 rounded w-[80%] lg:w-[400px] h-screen overflow-y-scroll scrollbar"
         >
-          <h1 className="text-2xl font-bold">Table of Contents</h1>
+          <h1 className="font-bold text-2xl">Table of Contents</h1>
           <Select
             value={selectedVol.toString()}
             onValueChange={(e) => setSelectedVol(parseInt(e))}
@@ -87,7 +87,7 @@ const SideBar: FC<sideProps> = ({
                   volumes.map((volume, index) => {
                     return (
                       <SelectItem
-                        className="text-[16px] py-4"
+                        className="py-4 text-[16px]"
                         defaultChecked={index === volIndex}
                         key={index + volume.id}
                         value={index.toString()}
@@ -106,7 +106,7 @@ const SideBar: FC<sideProps> = ({
             {volumes[selectedVol].tabeleOfContents.map((chapter, index) => (
               <p
                 onClick={() => handleChapArr(selectedVol, index)}
-                className="p-5 block hover:bg-gray-300 dark:hover:bg-slate-800 border border-gray-300 dark:border-gray-700 my-5 rounded-lg"
+                className="block hover:bg-gray-300 dark:hover:bg-slate-800 my-5 p-5 border border-gray-300 dark:border-gray-700 rounded-lg"
                 key={index}
                 id={`chap-${index}`}
               >

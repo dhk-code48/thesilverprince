@@ -16,8 +16,8 @@ interface novelInfoProps {
 const NovelInfo: FC<novelInfoProps> = ({ novel, volumes, id }) => {
   return (
     <>
-      <Breadcrumbs id={novel.id} title={novel.title} />
-      <div className="flex lg:justify-stretch flex-wrap justify-center mt-10 gap-10">
+      <Breadcrumbs volume="" id={novel.id} title={novel.title} />
+      <div className="flex flex-wrap justify-center lg:justify-stretch gap-10 mt-10">
         <Image
           src={novel.banner}
           width={300}
@@ -25,18 +25,18 @@ const NovelInfo: FC<novelInfoProps> = ({ novel, volumes, id }) => {
           className="rounded-xl"
           alt="background of card"
         />
-        <div className="flex justify-between text-center lg:text-left flex-col">
+        <div className="flex flex-col justify-between lg:text-left text-center">
           <div>
             <h1 className="font-bold text-3xl">{novel.title}</h1>
-            <p className="text-muted-foreground mt-1">{novel.tags}</p>
-            <div className="mt-8  lg:mb-0 mb-8 flex gap-5 items-center justify-center lg:justify-start">
+            <p className="mt-1 text-muted-foreground">{novel.tags}</p>
+            <div className="flex justify-center lg:justify-start items-center gap-5 mt-8 mb-8 lg:mb-0">
               <Rating rating={4.4} />
               <Link
                 href={
                   "https://www.webnovel.com/book/pokemon---a-real-story_17998901406022605"
                 }
                 target="_blank"
-                className="text-lg cursor-pointer flex"
+                className="flex text-lg cursor-pointer"
               >
                 4.4 <p className="text-blue-500">( webnovel.com )</p>
               </Link>

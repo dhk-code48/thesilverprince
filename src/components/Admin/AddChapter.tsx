@@ -6,6 +6,8 @@ import addChapter from "@/firebase/Create/addChapter";
 import { useRouter } from "next/navigation";
 import { VolumeProps } from "@/firebase/Read/getVolumes";
 import { Input } from "../ui/input";
+import { Checkbox } from "../ui/checkbox";
+import { Label } from "../ui/label";
 
 interface pageProps {
   novelId: string;
@@ -16,6 +18,8 @@ interface pageProps {
 const AddChapter: FC<pageProps> = ({ novelId, vol, setPageNovel }) => {
   const [content, setContent] = useState("");
   const [title, setTitle] = useState("");
+  const [schedule, setSchedule] = useState(false);
+  const [scheduleAt, setScheduleAt] = useState<string>("");
 
   const handleEditorChange = (content: string) => {
     setContent(content);
@@ -28,6 +32,7 @@ const AddChapter: FC<pageProps> = ({ novelId, vol, setPageNovel }) => {
       title: title,
       content: content,
       volume: vol,
+      scheduleAt: scheduleAt,
     }).finally(() => {
       setPageNovel();
     });
@@ -35,10 +40,10 @@ const AddChapter: FC<pageProps> = ({ novelId, vol, setPageNovel }) => {
 
   return (
     <div>
-      <div className="flex justify-between items-center lg:w-[1300px] mx-auto p-10">
+      <div className="flex justify-between items-center mx-auto p-10 lg:w-[1300px]">
         <p
           onClick={setPageNovel}
-          className="bg-blue-400 text-white rounded px-3 py-1 inline-block"
+          className="inline-block bg-blue-400 px-3 py-1 rounded text-white"
         >
           <LuChevronsLeft size={22} />
         </p>
@@ -49,12 +54,12 @@ const AddChapter: FC<pageProps> = ({ novelId, vol, setPageNovel }) => {
         </div>
       </div>
 
-      <div className="max-w-[900px] mx-auto">
+      <div className="space-y-5 mx-auto max-w-[900px]">
         <Input
           placeholder="Title of an Chapter"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
-          className="px-5 py-2 mb-5 outline-blue-100 border rounded w-full text-2xl"
+          className="mb-5 px-5 py-2 border rounded outline-blue-100 w-full text-2xl"
         />
         <SunEditor
           onChange={handleEditorChange}
@@ -92,6 +97,28 @@ const AddChapter: FC<pageProps> = ({ novelId, vol, setPageNovel }) => {
             ],
           }}
         />
+        <div className="space-y-3 bg-card p-4 rounded-md">
+          <div className="flex items-center gap-3">
+            <Checkbox
+              id="schedule"
+              className="border-primary"
+              checked={schedule}
+              onCheckedChange={(check) =>
+                setSchedule(typeof check === "boolean" ? check : false)
+              }
+            />
+            <Label htmlFor="schedule" className="font-medium">
+              Schedule Post?
+            </Label>
+          </div>
+          {schedule && (
+            <Input
+              type="datetime-local"
+              value={scheduleAt}
+              onChange={(e) => setScheduleAt(e.target.value)}
+            />
+          )}
+        </div>
       </div>
     </div>
   );

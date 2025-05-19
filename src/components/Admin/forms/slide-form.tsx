@@ -37,8 +37,6 @@ import { SilverPrinceSlide } from "@/lib/types";
 interface SlideFormProps {
   values?: Partial<SilverPrinceSlide>;
   onSuccess?: (data: SlideFormType) => void;
-  title?: string;
-  description?: string;
 }
 
 export function SlideForm({ values, onSuccess }: SlideFormProps) {
