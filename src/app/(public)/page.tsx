@@ -34,7 +34,7 @@ export default function Home() {
             </p>
             <div className="flex flex-wrap justify-center gap-4 mt-8 animate-fade-in animation-delay-700">
               <Button asChild className="hover:scale-105 transition-transform">
-                <Link href="/novels/pokemon-a-real-story">Start Reading</Link>
+                <Link href="/novel/pokemon-a-real-story">Start Reading</Link>
               </Button>
               <Button
                 asChild

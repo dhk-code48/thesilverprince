@@ -328,14 +328,14 @@ const Chapter: FC<pageProps> = ({
             </Link>
             <span className="text-muted-foreground">/</span>
             <Link
-              href="/novels"
+              href="/novel"
               className="font-medium text-muted-foreground hover:text-foreground text-sm"
             >
               Novels
             </Link>
             <span className="text-muted-foreground">/</span>
             <Link
-              href={`/novels/${novelId}`}
+              href={`/novel/${novelId}`}
               className="font-medium text-muted-foreground hover:text-foreground text-sm"
             >
               {novelTitle}

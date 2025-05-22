@@ -16,14 +16,14 @@ const AdminPageLayout = ({ children }: { children: React.ReactNode }) => {
   const router = useRouter();
 
   useEffect(() => {
-    if (!isLoading && !isLogIn) router.push("/novels");
+    if (!isLoading && !isLogIn) router.push("/novel");
 
     if (!isLoading && user) {
       if (
         user.uid !== process.env.NEXT_PUBLIC_KEY1 ||
-        user.uid !== process.env.NEXT_PUBLIC_KEY1
+        user.uid !== process.env.NEXT_PUBLIC_KEY2
       ) {
-        router.push("/novels");
+        router.push("/novel");
       }
     }
   }, [user, isLoading, router, isLogIn]);

@@ -88,7 +88,7 @@ export function ReaderSettings({
               </Link>
             </Button>
             <Button variant="ghost" className="justify-start w-full" asChild>
-              <Link href="/novels">
+              <Link href="/novel">
                 <List className="mr-2 w-4 h-4" />
                 Novels
               </Link>

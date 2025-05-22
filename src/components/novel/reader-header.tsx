@@ -97,14 +97,14 @@ export function ReaderHeader({
           </Link>
           <span className="text-muted-foreground">/</span>
           <Link
-            href="/novels"
+            href="/novel"
             className="font-medium text-muted-foreground hover:text-foreground text-sm"
           >
             Novels
           </Link>
           <span className="text-muted-foreground">/</span>
           <Link
-            href={`/novels/${encodeURIComponent(
+            href={`/novel/${encodeURIComponent(
               novelTitle.toLowerCase().replace(/\s+/g, "-")
             )}`}
             className="font-medium text-muted-foreground hover:text-foreground text-sm"

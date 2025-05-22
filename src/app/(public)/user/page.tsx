@@ -1,6 +1,9 @@
 "use client";
 import BasicSkeleton from "@/components/Skleaton";
+import { Button } from "@/components/ui/button";
 import { UseAuth } from "@/context/AuthContext";
+import { auth } from "@/lib/firebaseConfig";
+import { signOut } from "firebase/auth";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import React, { FC, useEffect } from "react";
@@ -18,12 +21,12 @@ const User: FC = () => {
   return (
     <div>
       {isLoading ? (
-        <div className="flex flex-col gap-10 justify-center items-center mt-10">
+        <div className="flex flex-col justify-center items-center gap-10 mt-10">
           <BasicSkeleton />
           <BasicSkeleton />
         </div>
       ) : (
-        <div>
+        <div className="place-content-center grid">
           <h1>
             {user.displayName}
             <Image
@@ -34,6 +37,9 @@ const User: FC = () => {
               src={user.photoUrl}
             />
           </h1>
+          <Button onClick={() => signOut(auth).then(() => router.push("/"))}>
+            Logout
+          </Button>
         </div>
       )}
     </div>
