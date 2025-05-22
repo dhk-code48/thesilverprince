@@ -19,10 +19,10 @@ export default function Home() {
         <div className="z-10 relative">
           <div className="flex flex-col items-center mx-auto mb-12 max-w-4xl text-center">
             <div className="relative">
-              <h2 className="mb-4 font-bold text-primary text-5xl md:text-7xl tracking-tight animate-float">
+              <h2 className="mb-4 font-bold text-primary text-5xl md:text-6xl tracking-tight animate-float">
                 Freedom
               </h2>
-              <h2 className="mb-8 font-bold text-primary text-5xl md:text-7xl tracking-tight animate-float animation-delay-300">
+              <h2 className="mb-8 font-bold text-primary text-5xl md:text-6xl tracking-tight animate-float animation-delay-300">
                 From Reality
               </h2>
               <div className="-top-8 -left-8 absolute bg-primary/30 rounded-full w-16 h-16 animate-pulse"></div>

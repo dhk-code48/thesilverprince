@@ -69,17 +69,17 @@ const Collapse: React.FC<pageProps> = ({
       onOpenChange={setIsOpen}
       className="space-y-2 my-5"
     >
-      <div className="flex justify-between items-center space-x-4 hover:bg-slate-200 dark:hover:bg-slate-800 px-3 lg:px-10 py-2 border rounded-lg">
-        <h4 className="font-semibold text-xl">
-          Volume {index} : {title}
-        </h4>
-        <CollapsibleTrigger asChild>
+      <CollapsibleTrigger asChild>
+        <div className="flex justify-between items-center space-x-4 hover:bg-slate-200 dark:hover:bg-slate-800 px-3 lg:px-10 py-2 border rounded-lg">
+          <h4 className="font-semibold text-xl">
+            Volume {index} : {title}
+          </h4>
           <Button variant="ghost" size="sm" className="p-0 w-9">
             <LuChevronDown className="w-4 h-4" />
             <span className="sr-only">Toggle</span>
           </Button>
-        </CollapsibleTrigger>
-      </div>
+        </div>
+      </CollapsibleTrigger>
 
       <CollapsibleContent className="space-y-2 grid lg:grid-cols-2 grid-col-1">
         {volume !== null ? (

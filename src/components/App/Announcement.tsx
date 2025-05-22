@@ -39,7 +39,7 @@ const AnnouncementCard: FC<cardProps> = ({
       <Card
         onClick={onClick}
         className={cn(
-          "shadow-sm hover:shadow-md border transition-all hover:-translate-y-1 duration-300",
+          "shadow-sm hover:shadow-md border h-full transition-all hover:-translate-y-1 duration-300",
           className
         )}
       >

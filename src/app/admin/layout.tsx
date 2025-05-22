@@ -20,7 +20,7 @@ const AdminPageLayout = ({ children }: { children: React.ReactNode }) => {
 
     if (!isLoading && user) {
       if (
-        user.uid !== process.env.NEXT_PUBLIC_KEY1 ||
+        user.uid !== process.env.NEXT_PUBLIC_KEY1 &&
         user.uid !== process.env.NEXT_PUBLIC_KEY2
       ) {
         router.push("/novel");

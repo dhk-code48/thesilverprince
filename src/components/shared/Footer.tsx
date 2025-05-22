@@ -111,7 +111,15 @@ export default function Footer() {
                     href="/news"
                     className="hover:text-primary transition-colors"
                   >
-                    News
+                    Announcements
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/blogs"
+                    className="hover:text-primary transition-colors"
+                  >
+                    Blogs
                   </Link>
                 </li>
                 <li>
@@ -121,7 +129,7 @@ export default function Footer() {
                   >
                     About Us
                   </Link>
-                </li>
+                </li>{" "}
               </ul>
             </div>
 
